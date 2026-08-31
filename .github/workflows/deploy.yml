@@ -1,0 +1,57 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate site bundle
+        run: |
+          test -f index.html
+          ! grep -q "__FRAUNCES__\|__MANROPE__" index.html && echo "no font placeholders ✓"
+          grep -q "font/woff2;base64" index.html && echo "fonts embedded ✓"
+          ! grep -qi "cultureshare.co.za" index.html && echo "no external product links ✓"
+          ! grep -qi "in production" index.html && echo "no production-status claims ✓"
+          echo "index.html: $(wc -c < index.html) bytes"
+
+      - name: Stage site
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          [ -d assets ] && cp -r assets _site/
+          echo "Staged files:" && ls -la _site/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
