@@ -1,0 +1,21 @@
+{
+  "name": "Ntsika Shembe Holdings",
+  "short_name": "NSH",
+  "description": "IP origination & technology — with Culture Share, the flagship cultural technology platform.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0B0906",
+  "theme_color": "#0B0906",
+  "icons": [
+    {
+      "src": "assets/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -122,9 +122,15 @@ The wordmark tagline **"IP Origination & Technology"** now appears under the log
 ns-holdings/
 ├── index.html              ← the redesigned one-page website (fully self-contained)
 ├── brand-identity.md       ← this document
+├── README.md
+├── robots.txt              ← SEO
+├── sitemap.xml             ← SEO (update base URL when a custom domain is set)
+├── site.webmanifest        ← PWA manifest
+├── .github/workflows/deploy.yml   ← auto-deploy to Pages on push
 └── assets/
     ├── logo-dark.svg       ← lockup for dark backgrounds
-    └── logo-light.svg      ← lockup for light/cream backgrounds
+    ├── logo-light.svg      ← lockup for light/cream backgrounds
+    └── favicon/            ← favicon.svg + PNG set (16/32/180/192/512)
 ```
 
 ## 9. Performance & polish (final pass)

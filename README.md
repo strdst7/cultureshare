@@ -36,11 +36,19 @@ python3 -m http.server 8080
 
 ```
 ns-holdings/
-├── index.html          ← the entire website (fonts, art, music, logic all embedded)
-├── brand-identity.md   ← full brand system: concept, logo, palette, typography, voice, features
+├── index.html              ← the entire website (fonts, art, music, logic all embedded)
+├── brand-identity.md       ← full brand system: concept, logo, palette, typography, voice, features
+├── README.md               ← this file
+├── robots.txt              ← SEO: allow all, points to sitemap
+├── sitemap.xml             ← SEO: canonical URL (update base when a custom domain is set)
+├── site.webmanifest        ← web app manifest (theme, icons)
+├── .github/
+│   └── workflows/
+│       └── deploy.yml      ← auto-build, validate & deploy to GitHub Pages on push
 └── assets/
-    ├── logo-dark.svg   ← lockup for dark backgrounds
-    └── logo-light.svg  ← lockup for light/cream backgrounds
+    ├── logo-dark.svg       ← lockup for dark backgrounds
+    ├── logo-light.svg      ← lockup for light/cream backgrounds
+    └── favicon/            ← favicon.svg + PNG set (16/32/180/192/512)
 ```
 
 ## 🎨 Brand at a glance

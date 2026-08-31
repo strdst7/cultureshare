@@ -24,8 +24,14 @@ jobs:
       - name: Validate site bundle
         run: |
           test -f index.html
+          test -f sitemap.xml
+          test -f robots.txt
+          test -f site.webmanifest
+          test -f assets/favicon/favicon.svg
           ! grep -q "__FRAUNCES__\|__MANROPE__" index.html && echo "no font placeholders ✓"
           grep -q "font/woff2;base64" index.html && echo "fonts embedded ✓"
+          grep -q "sitemaps.org" sitemap.xml && echo "sitemap valid ✓"
+          grep -q "Sitemap:" robots.txt && echo "robots points to sitemap ✓"
           ! grep -qi "cultureshare.co.za" index.html && echo "no external product links ✓"
           ! grep -qi "in production" index.html && echo "no production-status claims ✓"
           echo "index.html: $(wc -c < index.html) bytes"
@@ -33,9 +39,9 @@ jobs:
       - name: Stage site
         run: |
           mkdir -p _site
-          cp index.html _site/
+          cp index.html sitemap.xml robots.txt site.webmanifest _site/
           [ -d assets ] && cp -r assets _site/
-          echo "Staged files:" && ls -la _site/
+          echo "Staged files:" && find _site -type f | sort
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://strdst7.github.io/ns-holdings/sitemap.xml
