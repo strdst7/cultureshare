@@ -28,12 +28,10 @@ jobs:
           test -f robots.txt
           test -f site.webmanifest
           test -f assets/favicon/favicon.svg
-          test -f first-layout-signature-dancing.html
           ! grep -q "__FRAUNCES__\|__MANROPE__" index.html && echo "no font placeholders ✓"
           grep -q "font/woff2;base64" index.html && echo "fonts embedded ✓"
           grep -q "sitemaps.org" sitemap.xml && echo "sitemap valid ✓"
           grep -q "Sitemap:" robots.txt && echo "robots points to sitemap ✓"
-          grep -q "Dancing Script" first-layout-signature-dancing.html && echo "signature layout: script font present ✓"
           ! grep -qi "cultureshare.co.za" index.html && echo "no external product links ✓"
           ! grep -qi "in production" index.html && echo "no production-status claims ✓"
           echo "index.html: $(wc -c < index.html) bytes"
@@ -42,7 +40,6 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html sitemap.xml robots.txt site.webmanifest _site/
-          cp first-layout-signature-dancing.html _site/
           [ -d assets ] && cp -r assets _site/
           echo "Staged files:" && find _site -type f | sort
 
