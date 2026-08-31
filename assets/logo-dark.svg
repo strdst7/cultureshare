@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+  <!-- Ntsika Shembe Holdings — horizontal lockup (dark background) -->
+  <rect width="640" height="160" fill="#0B0906"/>
+  <g transform="translate(40,34)">
+    <!-- Mark: the Pillar of Origin -->
+    <g fill="none" stroke="#E5C276" stroke-width="6">
+      <rect x="34" y="34" width="52" height="52" transform="rotate(45 60 60)"/>
+    </g>
+    <g fill="#E5C276">
+      <path d="M53 92 h14 v-10 h-14 v-8 h10 v-10 h-10 v-8 h6 v-10" stroke="#E5C276" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="57.8" y="14.8" width="10.4" height="10.4" transform="rotate(45 63 20)"/>
+    </g>
+    <!-- Wordmark -->
+    <g font-family="Fraunces, Georgia, serif">
+      <text x="110" y="52" font-size="40" font-weight="600" letter-spacing="-0.5" fill="#F3ECDC">Ntsika Shembe</text>
+      <text x="110" y="88" font-size="15" font-weight="800" letter-spacing="10" fill="#C89B3C">HOLDINGS</text>
+    </g>
+    <g font-family="Manrope, Arial, sans-serif">
+      <text x="110" y="112" font-size="12.5" letter-spacing="4" fill="#C5B493">IP ORIGINATION &amp; TECHNOLOGY</text>
+    </g>
+  </g>
+</svg>
