@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ntsika Shembe Holdings — IP Origination & Technology">
 <meta property="og:description" content="A South African IP origination holding company — with Culture Share, its flagship cultural technology platform.">
-<noscript><style>#intro{display:none!important}</style></noscript>
+<noscript><style>#intro{display:none!important}@keyframes introLogo{to{opacity:1;transform:none}}</style></noscript>
 <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
 <link rel="icon" href="assets/favicon/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
@@ -139,7 +139,7 @@ section{position:relative;scroll-margin-top:72px}
 .nav.scrolled{background:rgba(11,9,6,.86);backdrop-filter:blur(14px);border-color:var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:100px}
 .brand{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
-.brand .mark{width:44px;height:44px}
+.brand .mark{width:44px;height:auto}
 .wordmark{display:flex;flex-direction:column;line-height:1.12}
 .wm-1{font-family:var(--serif);font-weight:620;font-size:1.14rem;letter-spacing:.005em}
 .wm-2{font-size:.6rem;font-weight:800;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
@@ -167,7 +167,7 @@ section{position:relative;scroll-margin-top:72px}
 }
 .hero-mark{
   display:block;position:absolute;top:120px;right:clamp(-60px,2vw,-10px);
-  width:clamp(260px,34vw,480px);color:var(--gold);opacity:.10;pointer-events:none;
+  width:clamp(150px,20vw,280px);color:var(--gold);opacity:.10;pointer-events:none;
   transform:rotate(0);z-index:0;
 }
 .hero-canvas{
@@ -751,7 +751,7 @@ section{position:relative;scroll-margin-top:72px}
 .board-stage{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(18px,3vw,44px)}
 .bm-slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(20px,4vw,60px);max-width:960px;margin-inline:auto;opacity:0;transform:translateY(22px) scale(.99);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
 .bm-slide.active{opacity:1;transform:none;pointer-events:auto}
-.bm-mark{display:block;width:64px;height:64px;margin-bottom:26px;opacity:.95}
+.bm-mark{display:block;width:60px;height:auto;margin-bottom:26px;opacity:.95}
 .bm-kicker{font-size:.64rem;font-weight:800;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.7em;justify-content:center}
 .bm-kicker::before,.bm-kicker::after{content:"";width:26px;height:1px;background:rgba(200,155,60,.5)}
 .bm-title{font-family:var(--serif);font-weight:540;font-size:clamp(1.7rem,4.6vw,3.3rem);line-height:1.12;letter-spacing:-.015em;color:var(--bone);text-wrap:balance;margin:.45em 0 .4em}
@@ -830,13 +830,9 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
 #intro.bye{opacity:0;visibility:hidden;pointer-events:none}
 .intro-box{display:flex;flex-direction:column;align-items:center;gap:22px}
 .intro-mark{width:96px;height:96px;color:var(--gold)}
-.intro-mark .dia{
-  fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;
-  stroke-dasharray:200;stroke-dashoffset:200;
-  animation:drawDia .85s cubic-bezier(.6,0,.2,1) forwards;
-}
-.intro-mark .pil{opacity:0;transform:translateY(12px);animation:rise .5s ease .5s forwards}
-.intro-mark .tip{opacity:0;animation:rise .4s ease .6s forwards}
+img.intro-mark{opacity:0;transform:translateY(10px);animation:introLogo .7s cubic-bezier(.2,.7,.2,1) .15s forwards}
+
+
 @keyframes drawDia{to{stroke-dashoffset:0}}
 @keyframes rise{to{opacity:1;transform:none}}
 .intro-word{text-align:center;overflow:hidden}
@@ -1081,11 +1077,7 @@ html{scroll-padding-top:96px}
 <!-- ================= WOW: BRAND INTRO ================= -->
 <div id="intro" aria-hidden="true" tabindex="0" role="presentation">
   <div class="intro-box">
-    <svg class="intro-mark" viewBox="0 0 64 64" fill="none">
-      <rect class="dia" x="8.7" y="8.7" width="46.6" height="46.6" transform="rotate(45 32 32)"/>
-      <path class="pil" d="M29 51 h6 v-5 h-6 v-4 h4 v-5 h-4 v-4 h2 v-6" stroke="#C89B3C" stroke-width="1.4" stroke-linejoin="round" fill="#C89B3C"/>
-      <rect class="tip" x="29.4" y="12.6" width="5.2" height="5.2" transform="rotate(45 32 15.2)" fill="#C89B3C"/>
-    </svg>
+    <img class="intro-mark" src="assets/brand/logo.png" alt="Ntsika Shembe Holdings">
     <div class="intro-word" id="introWord" data-text="Ntsika Shembe"></div>
     <div class="intro-hold">HOLDINGS</div>
     <div class="intro-tag">IP ORIGINATION &amp; TECHNOLOGY</div>
@@ -1097,7 +1089,7 @@ html{scroll-padding-top:96px}
 <header class="nav" id="nav">
   <div class="container nav-in">
     <a class="brand" href="#top" aria-label="Ntsika Shembe Holdings — home">
-      <img class="mark" src="assets/brand/logo-gold.svg" alt="" aria-hidden="true">
+      <img class="mark" src="assets/brand/logo.png" alt="" aria-hidden="true">
       <span class="wordmark">
         <span class="wm-1">Ntsika Shembe</span>
         <span class="wm-2">Holdings</span>
@@ -1135,7 +1127,7 @@ html{scroll-padding-top:96px}
 <section class="hero">
   <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero3d-glow" aria-hidden="true"></div>
-  <img class="hero-mark" src="assets/brand/logo-gold.svg" alt="" aria-hidden="true">
+  <img class="hero-mark" src="assets/brand/logo.png" alt="" aria-hidden="true">
   <span class="est-vert">Est. 2026 — Vereeniging, Gauteng, ZA</span>
 
   <div class="container hero-in">
@@ -1457,7 +1449,7 @@ html{scroll-padding-top:96px}
     </div>
 
     <div class="gov">
-      <img class="gov-mark" src="assets/brand/logo-gold.svg" alt="" aria-hidden="true">
+      <img class="gov-mark" src="assets/brand/logo.png" alt="" aria-hidden="true">
       <div class="reveal" style="--d:.08s">
         <h3>Governance is part of the product</h3>
         <p>Financial-governance discipline is built into how NSH engineers — from the CST loyalty ledger to the way IP is originated, held, and overseen. The house is run the way the products are built.</p>
@@ -1551,7 +1543,7 @@ html{scroll-padding-top:96px}
 
     <div class="fl-doc-grid">
       <div>
-        <div class="reveal" style="--d:.05s"><img class="fl-mark" src="assets/brand/logo-gold.svg" alt="" aria-hidden="true"></div>
+        <div class="reveal" style="--d:.05s"><img class="fl-mark" src="assets/brand/logo.png" alt="" aria-hidden="true"></div>
         <p class="label reveal" style="--d:.1s">The Signature</p>
         <h3 class="fl-sig-title reveal" style="--d:.14s">The Pillar of Origin</h3>
         <p class="fl-quote reveal" style="--d:.18s">A diamond — the idea. A rising pillar — the IP, engineered and held. Together, a custom “N” for Ntsika.</p>
@@ -1598,7 +1590,7 @@ html{scroll-padding-top:96px}
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="brand" href="#top" aria-label="Ntsika Shembe Holdings — home">
-          <img class="mark" src="assets/brand/logo-gold.svg" alt="" aria-hidden="true">
+          <img class="mark" src="assets/brand/logo.png" alt="" aria-hidden="true">
           <span class="wordmark">
             <span class="wm-1">Ntsika Shembe</span>
             <span class="wm-2">Holdings</span>
@@ -1678,7 +1670,7 @@ html{scroll-padding-top:96px}
   <div class="board-stage" id="boardStage">
 
     <section class="bm-slide active" data-bm="0">
-      <img class="bm-mark" src="assets/brand/logo-gold.svg" alt="" aria-hidden="true">
+      <img class="bm-mark" src="assets/brand/logo.png" alt="" aria-hidden="true">
       <p class="bm-kicker">Board briefing · 2026</p>
       <h2 class="bm-title">We <em>originate</em> ideas, <em>engineer</em> them into working products, and <em>hold</em> the IP we build.</h2>
       <p class="bm-sub">Ntsika Shembe Holdings (Pty) Ltd — an IP origination holding company based in Vereeniging, Gauteng, South Africa.</p>
