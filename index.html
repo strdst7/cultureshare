@@ -2784,7 +2784,7 @@ html{scroll-padding-top:96px}
   }
 })();
 </script>
-<!-- ============ WOW: SECTION EXIT SCALE — subtle zoom-out as a section scrolls out ============ -->
+<!-- ============ WOW: SECTION ENTER/EXIT SCALE — zoom-in entering, zoom-out leaving ============ -->
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2804,13 +2804,16 @@ html{scroll-padding-top:96px}
   var ticking = false;
   function apply(){
     ticking = false;
-    var i, sec, r, prog;
+    var i, sec, r, exitP, enterP, prog;
+    var span = vh * 0.16;
     for (i = 0; i < sections.length; i++){
       sec = sections[i];
       r = sec.getBoundingClientRect();
-      /* exit progress: 0 while the section top is still in view,
-         1 once it has travelled 16% of the viewport above the top */
-      prog = Math.min(1, Math.max(0, -r.top / (vh * 0.16)));
+      /* symmetric: exit = section top travelled up to 16% vh above the top edge,
+         enter = section top still within 16% vh below the bottom edge (growing in) */
+      exitP = Math.min(1, Math.max(0, -r.top / span));
+      enterP = Math.min(1, Math.max(0, (vh - r.top) / span));
+      prog = exitP + (1 - enterP);
       if (prog > 0.002){
         sec.style.transformOrigin = 'top center';
         sec.style.transform = 'scale(' + (1 - 0.028 * prog).toFixed(4) + ')';
