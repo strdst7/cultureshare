@@ -262,10 +262,10 @@ section{position:relative;scroll-margin-top:72px}
 .culture .label::before{background:#9A7327}
 .culture .h2{color:#1B140B}
 .culture .h2 em{color:#9A7327}
-.culture .lead{color:rgba(27,20,11,.72);max-width:60ch}
-.cu-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,84px);margin-top:clamp(40px,6vw,64px);align-items:start}
+.culture .lead{color:rgba(27,20,11,.72);max-width:60ch;text-wrap:pretty}
 
-.cu-visual{position:relative}
+
+
 .cu-note{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(27,20,11,.5);font-weight:700;text-align:center;margin-top:18px}
 /* ============ CAPABILITY ============ */
 .cap{background:var(--ink);padding-block:var(--sec)}
@@ -337,9 +337,9 @@ section{position:relative;scroll-margin-top:72px}
 }
 .story-dot:hover{border-color:#9A7327}
 .story-dot.active{background:#9A7327;border-color:#9A7327;transform:scale(1.15)}
-.story-phone{display:flex;flex-direction:column;align-items:center;gap:14px}
-.story-phone .phone{width:min(308px,100%);margin:0}
-.story-phone .phone-screen{position:relative;height:578px}
+
+
+
 .screen{
   position:absolute;inset:0;opacity:0;transform:translateY(16px) scale(.985);
   transition:opacity .5s ease,transform .5s ease;pointer-events:none;overflow:hidden;
@@ -398,14 +398,14 @@ section{position:relative;scroll-margin-top:72px}
 @media (max-width:1020px){
   .story-view{grid-template-columns:1fr;gap:26px}
   .story-texts{min-height:270px}
-  .story-phone .phone-screen{height:470px}
-  .story-phone .phone{width:min(270px,72vw)}
+  
+  
 }
 @media (max-width:560px){
   .story-texts{min-height:300px}
 
 @media (max-width:560px){
-  .story-phone .phone-screen{height:430px}
+  
   .screen .app{padding:12px 12px 8px}
   .screen .app-top{margin-bottom:9px}
   .screen .app-tabs{margin-bottom:9px}
@@ -427,7 +427,7 @@ section{position:relative;scroll-margin-top:72px}
   .screen .cst-hero{padding:12px}
 }
 
-  .story-phone .phone-screen{height:430px}
+  
   .scene-meta{display:none}
   
   .story-stage{height:470vh}
@@ -886,8 +886,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
   .about-grid{grid-template-columns:1fr;gap:36px}
   .about-left .sticky{position:static}
   .svc-grid{grid-template-columns:1fr 1fr}
-  .cu-grid{grid-template-columns:1fr;gap:56px}
-  .cu-visual{max-width:360px;margin-inline:auto;width:100%}
+  
+  
   .foot-grid{grid-template-columns:1fr 1fr}
   .foot-brand{grid-column:1/-1}
 }
@@ -947,20 +947,25 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
 }
 
 /* Culture Share — live badge + feature grid */
-.cu-badge{display:inline-flex;align-items:center;gap:.55em;margin-top:20px;padding:.5em 1.1em;border:1px solid rgba(154,115,39,.45);border-radius:999px;background:rgba(154,115,39,.08);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7A5A16}
+.cu-badge{display:inline-flex;align-items:center;gap:.55em;margin-top:clamp(18px,2.2vw,24px);padding:.5em 1.1em;border:1px solid rgba(154,115,39,.45);border-radius:999px;background:rgba(154,115,39,.08);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7A5A16;transition:border-color .25s ease,background .25s ease}
+.cu-badge:hover{border-color:rgba(154,115,39,.7);background:rgba(154,115,39,.12)}
 .cu-badge .live-dot{width:8px;height:8px;border-radius:50%;background:#2E8B57;box-shadow:0 0 0 0 rgba(46,139,87,.55);animation:ciPulse 2.4s infinite;flex:none}
 .cu-badge a{color:#5C420F;text-decoration:underline;text-underline-offset:3px;font-weight:800;transition:color .25s ease}
 .cu-badge a:hover{color:#3E2C09}
-.cu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:clamp(36px,4.5vw,52px);text-align:left}
-.cu-card{background:rgba(255,255,255,.55);border:1px solid rgba(154,115,39,.22);border-radius:var(--r);padding:clamp(20px,2.4vw,26px);transition:.3s;position:relative;overflow:hidden}
+.cu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:clamp(36px,4.5vw,52px);text-align:left;grid-auto-rows:1fr}
+.cu-card{height:100%;background:rgba(255,255,255,.55);border:1px solid rgba(154,115,39,.22);border-radius:var(--r);padding:clamp(20px,2.4vw,26px);transition:.3s;position:relative;overflow:hidden}
 .cu-card:hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(90,60,10,.35);border-color:rgba(154,115,39,.5)}
+.cu-card:hover .cu-ic{background:var(--gold);color:#1B140B}
 .cu-card .cu-ic{width:42px;height:42px;border-radius:9px;background:#1B140B;color:var(--gold2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
 .cu-card .cu-ic svg{width:22px;height:22px}
-.cu-card h4{font-family:var(--serif);font-size:1.22rem;font-weight:620;color:#221808;letter-spacing:-.01em}
-.cu-card p{font-size:.87rem;color:rgba(27,20,11,.72);margin-top:.55em;line-height:1.65}
+.cu-card h4{font-family:var(--serif);font-size:1.22rem;font-weight:620;color:#221808;letter-spacing:-.01em;text-wrap:balance}
+.cu-card p{font-size:clamp(.86rem,1.05vw,.94rem);color:rgba(27,20,11,.72);margin-top:.55em;line-height:1.72;text-wrap:pretty}
 @media (max-width:700px){.cu-grid{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){.cu-card{transition:none}.cu-badge .live-dot{animation:none}}
+@media (prefers-reduced-motion:reduce){.cu-card{transition:none}.cu-badge{transition:none}.cu-badge .live-dot{animation:none}}
 
+/* Typographic refinement — balanced headings, orphan-free paragraphs (progressive; ignored if unsupported) */
+h1,h2,h3,.h2{text-wrap:balance}
+p,li{text-wrap:pretty}
 /* ==================== POLISH LAYER — global refinement pass ==================== */
 html{scroll-padding-top:96px}
 ::selection{background:var(--gold);color:var(--ink)}
