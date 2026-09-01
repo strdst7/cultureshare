@@ -675,6 +675,9 @@ section{position:relative;scroll-margin-top:72px}
 }
 @media (prefers-reduced-motion:reduce){
   .foot-swoosh path{stroke-dashoffset:0;transition:none}
+  #intro .intro-ring .ring{stroke-dashoffset:0;animation:none;opacity:.5}
+  #intro .intro-glow{animation:none;opacity:.4}
+  .intro-mark{animation:none;opacity:1;transform:none}
   .foot-swoosh .dot{opacity:1;transform:none;transition:none}
 }
 
@@ -829,8 +832,14 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
 }
 #intro.bye{opacity:0;visibility:hidden;pointer-events:none}
 .intro-box{display:flex;flex-direction:column;align-items:center;gap:22px}
-.intro-mark{width:auto;height:96px}
-img.intro-mark{opacity:0;transform:translateY(10px);animation:introLogo .7s cubic-bezier(.2,.7,.2,1) .15s forwards}
+.intro-mark-wrap{position:relative;width:132px;height:132px;display:flex;align-items:center;justify-content:center}
+.intro-glow{position:absolute;inset:10px;border-radius:50%;background:radial-gradient(circle,rgba(200,155,60,.30),rgba(200,155,60,0) 68%);animation:glowPulse 2.8s ease-in-out infinite}
+.intro-ring{position:absolute;inset:0;width:100%;height:100%}
+.intro-ring .ring{fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:340;stroke-dashoffset:340;animation:ringDraw 1.15s cubic-bezier(.6,0,.2,1) .15s forwards;opacity:.9}
+.intro-mark{position:relative;z-index:1;width:auto;height:92px;opacity:0;transform:scale(.84);animation:introLogo .85s cubic-bezier(.2,.7,.2,1) .35s forwards}
+@keyframes introLogo{to{opacity:1;transform:scale(1)}}
+@keyframes ringDraw{to{stroke-dashoffset:0}}
+@keyframes glowPulse{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:.95;transform:scale(1.07)}}
 
 
 @keyframes drawDia{to{stroke-dashoffset:0}}
@@ -1084,7 +1093,11 @@ html{scroll-padding-top:96px}
 <!-- ================= WOW: BRAND INTRO ================= -->
 <div id="intro" aria-hidden="true" tabindex="0" role="presentation">
   <div class="intro-box">
-    <img class="intro-mark" src="assets/brand/cs-logo.png" alt="Culture Share">
+    <div class="intro-mark-wrap">
+      <span class="intro-glow" aria-hidden="true"></span>
+      <svg class="intro-ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="ring" cx="60" cy="60" r="54"/></svg>
+      <img class="intro-mark" src="assets/brand/cs-logo.png" alt="Culture Share">
+    </div>
     <div class="intro-word" id="introWord" data-text="Culture Share"></div>
     <div class="intro-hold">PLATFORM</div>
     <div class="intro-tag">CULTURAL TECHNOLOGY</div>
@@ -1688,31 +1701,37 @@ html{scroll-padding-top:96px}
   );
   if (!lineProg || !ptProg) return;
 
-  /* ---------- geometry: nested octahedra (gem + inner lattice) ---------- */
-  var SCALE = 1.3;
-  var OV = [
-    [1.0,0,0],[-1.0,0,0],[0,1.18,0],[0,-1.18,0],[0,0,1.0],[0,0,-1.0]
-  ];
-  function edges(vs){
-    var pos=[], dim=[];
-    for (var i=0;i<vs.length;i++) for (var j=i+1;j<vs.length;j++){
-      var v=vs[i], w=vs[j];
-      if (v[0]*w[0]+v[1]*w[1]+v[2]*w[2] > -0.999){
-        pos.push(v[0]*SCALE,v[1]*SCALE,v[2]*SCALE, w[0]*SCALE,w[1]*SCALE,w[2]*SCALE);
-        dim.push(1,1);
-      }
+  /* ---------- geometry: soft spherical lattice (curves — no sharp corners) ---------- */
+  var SCALE = 1.22;
+  var LAT = 7, LON = 12;
+  function ringPts(latIdx, rad){
+    var phi = (latIdx / LAT) * Math.PI - Math.PI/2, pts = [];
+    for (var k=0;k<LON;k++){
+      var th = (k/LON) * Math.PI*2;
+      pts.push([rad*Math.cos(phi)*Math.cos(th), rad*Math.sin(phi), rad*Math.cos(phi)*Math.sin(th)]);
     }
-    return {pos:pos, dim:dim};
+    return pts;
   }
-  var outer = edges(OV);
-  var c45 = Math.SQRT1_2;
-  var innerV = OV.map(function(v){
-    var x=v[0]*0.55, y=v[1]*0.55, z=v[2]*0.55;
-    return [x*c45+z*c45, y, -x*c45+z*c45];
-  });
-  var inner = edges(innerV);
-  var lineVerts = outer.pos.concat(inner.pos);
-  var lineDims  = outer.dim.concat(inner.dim.map(function(){ return 0.42; }));
+  var rings = [];
+  for (var i=0;i<=LAT;i++) rings.push(ringPts(i, SCALE));
+  for (var k=0;k<LON;k+=2){
+    var m = [];
+    for (var j=0;j<=LAT;j++){
+      var phi=(j/LAT)*Math.PI-Math.PI/2, th=(k/LON)*Math.PI*2;
+      m.push([SCALE*Math.cos(phi)*Math.cos(th), SCALE*Math.sin(phi), SCALE*Math.cos(phi)*Math.sin(th)]);
+    }
+    rings.push(m);
+  }
+  var pos=[], dim=[];
+  for (var r=0;r<rings.length;r++){
+    var ring=rings[r];
+    for (var k=0;k<ring.length;k++){
+      var a=ring[k], b=ring[(k+1)%ring.length];
+      pos.push(a[0],a[1],a[2], b[0],b[1],b[2]);
+      dim.push(1,1);
+    }
+  }
+  var lineVerts = pos, lineDims = dim;
   var LINE_N = lineVerts.length / 3;
 
   /* ---------- dust ---------- */
