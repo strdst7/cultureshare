@@ -1013,6 +1013,18 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;opac
   .cu-card::after{transition:none;transform:none;display:none}
 }
 
+
+/* ============ SEAMLESS SCROLL + SMOOTH UI — render offscreen content lazily, kill tap-delay & scroll chaining ============ */
+html{overscroll-behavior-y:none;scrollbar-gutter:stable}
+/* offscreen sections skip layout/paint until scrolled near — big smoothness win on a 15k+ px page.
+   (excluded: hero — needs instant paint for WebGL sizing; #about & #culture-share — contain position:sticky) */
+#culture-map,#capability,#leadership,#roadmap,#brand-document,#contact,footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
+a,button,.picker-chip,.story-dot,.menu-btn,.skip{touch-action:manipulation}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  #culture-map,#capability,#leadership,#roadmap,#brand-document,#contact,footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
+}
+
 /* ==================== POLISH LAYER — global refinement pass ==================== */
 html{scroll-padding-top:96px}
 ::selection{background:var(--gold);color:var(--ink)}
