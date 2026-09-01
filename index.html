@@ -151,9 +151,6 @@ section{position:relative;scroll-margin-top:72px}
 .nav-links{display:flex;align-items:center;gap:clamp(18px,2.6vw,34px)}
 .nav-links a{font-size:.86rem;font-weight:600;color:var(--mut);transition:color .2s;letter-spacing:.02em}
 .nav-links a:hover{color:var(--gold2)}
-.nav-cta{margin-left:10px}
-.nav-cta a{padding:.62em 1.25em;background:var(--gold);color:var(--ink);border-radius:var(--r);font-weight:800;font-size:.82rem;letter-spacing:.02em;color:var(--ink);transition:.25s}
-.nav-cta a:hover{background:var(--gold2);transform:translateY(-1px)}
 .menu-btn{display:none}
 .mobile-menu{display:none}
 
@@ -884,8 +881,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
   .foot-brand{grid-column:1/-1}
 }
 @media (max-width:760px){
-  .nav-links,.nav-cta{display:none}
-  .menu-btn{
+  .nav-links{display:none}  .menu-btn{
     display:flex;flex-direction:column;justify-content:center;gap:5px;
     width:44px;height:44px;align-items:center;border:1px solid var(--line);border-radius:8px;
   }
@@ -929,7 +925,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
 @media (prefers-reduced-motion:reduce){.cu-outro-link,.cu-outro-link span{transition:none}}
 
 /* Gold CTAs — keep focus ring visible on gold surfaces */
-.btn-gold:focus-visible,.nav-cta a:focus-visible{outline-color:var(--bone)}
+.btn-gold:focus-visible{outline-color:var(--bone)}
 /* 3D hero gem — soft glow behind the wireframe */
 .hero3d-glow{position:absolute;top:50%;left:clamp(52%,58vw,62%);width:min(58vmin,520px);height:min(58vmin,520px);transform:translate(-50%,-50%);pointer-events:none;z-index:0;opacity:.9;
   background:radial-gradient(circle at 50% 50%, rgba(184,147,95,.16), rgba(184,147,95,.05) 46%, transparent 70%);
@@ -1124,7 +1120,6 @@ html{scroll-padding-top:96px}
       <a href="#roadmap">Roadmap</a>
       <a href="#contact">Contact</a>
       <button type="button" class="board-btn" id="boardNavBtn" aria-label="Open board presentation mode"><span class="tri"></span>Board mode</button>
-      <span class="nav-cta"><a href="#contact">Get in touch</a></span>
     </nav>
     <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1141,7 +1136,6 @@ html{scroll-padding-top:96px}
   <a href="#roadmap"><small>05</small>Roadmap</a>
   <a href="#contact"><small>06</small>Contact</a>
   <button type="button" class="m-cta" id="boardMobBtn" style="width:100%;text-align:left;border:none;background:none;padding:0;margin-top:18px;font:inherit;cursor:pointer"><a style="display:inline-block;background:transparent;color:var(--gold2);border:1px solid var(--line-strong);font-size:1rem;padding:15px 26px;border-radius:var(--r)">▶ Board presentation</a></button>
-  <div class="m-cta"><a href="#contact">Get in touch</a></div>
 </div>
 
 <main id="top">
