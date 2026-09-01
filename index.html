@@ -764,6 +764,106 @@ section{position:relative;scroll-margin-top:72px}
   .foot-swoosh .dot{opacity:1;transform:none;transition:none}
 }
 
+
+/* ============ BOARD PACKAGE: leadership, roadmap, CI badge, board mode ============ */
+/* nav board button */
+.board-btn{
+  display:inline-flex;align-items:center;gap:.5em;
+  font-size:.78rem;font-weight:800;letter-spacing:.06em;
+  color:var(--gold2);border:1px solid var(--line-strong);border-radius:var(--r);
+  padding:.6em 1.1em;transition:.25s;background:transparent;white-space:nowrap;
+}
+.board-btn:hover{background:rgba(200,155,60,.12);border-color:var(--gold);transform:translateY(-1px)}
+.board-btn .tri{width:0;height:0;border-left:7px solid var(--gold2);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+/* ===== leadership & governance ===== */
+.lead{background:var(--ink);padding-block:var(--sec);border-top:1px solid var(--line)}
+.lead-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(34px,4.5vw,52px)}
+.l-card{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:clamp(20px,2.4vw,28px);transition:.3s;position:relative;overflow:hidden}
+.l-card::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,var(--gold),var(--ember));transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.l-card:hover{transform:translateY(-4px);border-color:var(--line-strong)}
+.l-card:hover::after{transform:scaleX(1)}
+.l-ic{width:40px;height:40px;border-radius:9px;border:1px solid var(--line-strong);color:var(--gold2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.l-ic svg{width:20px;height:20px}
+.l-card h4{font-family:var(--serif);font-size:1.16rem;font-weight:620;color:var(--bone)}
+.l-card .who{font-size:.68rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:.35em}
+.l-card p{font-size:.84rem;color:var(--mut);margin-top:.7em}
+.gov{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,44px);align-items:center;border-top:1px solid var(--line);padding-top:clamp(28px,4vw,40px)}
+.gov-mark{width:min(150px,34vw);color:var(--gold);opacity:.9}
+.gov h3{font-family:var(--serif);font-weight:560;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.1;text-wrap:balance;color:var(--bone);margin-bottom:.5em}
+.gov p{color:var(--mut);font-size:.95rem;max-width:56ch}
+.gov-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:1.3em}
+.gov-chips span{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--bone2);border:1px solid var(--line);border-radius:999px;padding:.5em 1.1em;background:rgba(200,155,60,.06)}
+/* ===== roadmap ===== */
+.road{background:
+  radial-gradient(900px 520px at 90% 8%, rgba(200,155,60,.10), transparent 60%),
+  var(--ink2);padding-block:var(--sec);border-top:1px solid var(--line)}
+.road-line{position:relative;margin-top:clamp(40px,5.5vw,60px);padding-left:clamp(28px,4vw,44px)}
+.road-line::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),rgba(200,155,60,.08))}
+.r-item{position:relative;padding:0 0 clamp(26px,3.5vw,38px) 0}
+.r-item:last-child{padding-bottom:0}
+.r-dot{position:absolute;left:clamp(-24px,calc(-4vw + 6px),-40px);top:5px;width:16px;height:16px;border-radius:50%;border:2px solid var(--gold);background:var(--ink2);box-shadow:0 0 0 4px rgba(200,155,60,.12)}
+.r-item.done .r-dot{background:var(--gold)}
+.r-item.done .r-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--ink2)}
+.r-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+.r-when{font-size:.64rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.r-tag{font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);border:1px solid var(--line);border-radius:999px;padding:.3em .8em}
+.r-item h4{font-family:var(--serif);font-weight:620;font-size:1.32rem;color:var(--bone);margin:.3em 0 .25em;letter-spacing:-.01em}
+.r-item p{font-size:.88rem;color:var(--mut);max-width:64ch}
+.r-cta{margin-top:clamp(20px,3vw,28px);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+/* ===== CI shipping proof ===== */
+.ci{display:inline-flex;align-items:center;gap:.6em;font-size:.74rem;font-weight:700;color:rgba(243,236,220,.6);letter-spacing:.05em}
+.ci-dot{width:9px;height:9px;border-radius:50%;background:#4CAF50;box-shadow:0 0 0 0 rgba(76,175,80,.6);animation:ciPulse 2.4s infinite;flex:none}
+@keyframes ciPulse{0%{box-shadow:0 0 0 0 rgba(76,175,80,.55)}70%{box-shadow:0 0 0 7px rgba(76,175,80,0)}100%{box-shadow:0 0 0 0 rgba(76,175,80,0)}}
+.ci code{font-family:var(--sans);font-weight:800;color:var(--gold2);letter-spacing:.08em}
+@media (max-width:900px){
+  .lead-grid{grid-template-columns:1fr 1fr}
+  .gov{grid-template-columns:1fr;text-align:left}
+}
+@media (max-width:560px){
+  .lead-grid{grid-template-columns:1fr}
+}
+/* ===== BOARD MODE ===== */
+.board{position:fixed;inset:0;z-index:120;background:var(--ink);display:none;flex-direction:column;overflow:hidden}
+.board.open{display:flex}
+.board::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect x='18' y='18' width='28' height='28' transform='rotate(45 32 32)' fill='none' stroke='%23C89B3C' stroke-opacity='0.06'/%3E%3C/svg%3E");}
+.board-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,3vw,34px);border-bottom:1px solid var(--line)}
+.board-brand{display:flex;align-items:center;gap:10px}
+.board-brand svg{width:26px;height:26px;color:var(--gold)}
+.board-brand span{font-family:var(--serif);font-weight:620;font-size:1rem;color:var(--bone)}
+.board-brand small{display:block;font-size:.52rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+.board-exit{display:inline-flex;align-items:center;gap:.5em;font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);border:1px solid var(--line);border-radius:999px;padding:.55em 1.15em;transition:.2s}
+.board-exit:hover{color:var(--bone);border-color:var(--gold)}
+.board-stage{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(18px,3vw,44px)}
+.bm-slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(20px,4vw,60px);max-width:960px;margin-inline:auto;opacity:0;transform:translateY(22px) scale(.99);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
+.bm-slide.active{opacity:1;transform:none;pointer-events:auto}
+.bm-mark{width:64px;height:64px;color:var(--gold);margin-bottom:26px;opacity:.95}
+.bm-kicker{font-size:.64rem;font-weight:800;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.7em;justify-content:center}
+.bm-kicker::before,.bm-kicker::after{content:"";width:26px;height:1px;background:rgba(200,155,60,.5)}
+.bm-title{font-family:var(--serif);font-weight:540;font-size:clamp(1.7rem,4.6vw,3.3rem);line-height:1.12;letter-spacing:-.015em;color:var(--bone);text-wrap:balance;margin:.45em 0 .4em}
+.bm-title em{font-style:italic;color:var(--gold2)}
+.bm-sub{color:var(--mut);font-size:clamp(.95rem,1.5vw,1.1rem);max-width:56ch;margin-inline:auto}
+.bm-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:1.6em;max-width:700px}
+.bm-chips span{font-size:.8rem;font-weight:600;color:var(--bone2);background:rgba(200,155,60,.08);border:1px solid rgba(200,155,60,.28);border-radius:999px;padding:.55em 1.15em}
+.bm-chips b{color:var(--gold2);font-weight:800;display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.2em}
+.bm-big{font-family:var(--serif);font-style:italic;font-weight:540;font-size:clamp(1.5rem,3.6vw,2.6rem);line-height:1.2;color:var(--gold2);text-wrap:balance;max-width:24ch;margin:.4em auto .5em}
+.bm-note{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,236,220,.4);font-weight:700;margin-top:2.2em}
+.bm-mail{display:inline-flex;align-items:center;gap:.6em;font-family:var(--serif);font-weight:620;font-size:clamp(1.1rem,2.4vw,1.6rem);color:var(--gold2);margin-top:1.2em;border-bottom:2px solid rgba(200,155,60,.4);padding-bottom:.2em}
+.board-bottom{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,26px);padding:16px clamp(18px,3vw,34px) 22px;border-top:1px solid var(--line)}
+.bm-dots{display:flex;gap:8px}
+.bm-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(200,155,60,.55);background:transparent;transition:.25s;padding:0}
+.bm-dot.active{background:var(--gold);border-color:var(--gold);transform:scale(1.15)}
+.bm-count{font-size:.68rem;font-weight:800;letter-spacing:.24em;color:var(--sand);min-width:64px;text-align:center}
+.bm-nav{display:inline-flex;align-items:center;gap:10px}
+.bm-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);color:var(--gold2);display:flex;align-items:center;justify-content:center;transition:.2s;font-size:1.05rem}
+.bm-btn:hover{background:rgba(200,155,60,.12);border-color:var(--gold)}
+.bm-hint{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(243,236,220,.38);font-weight:700}
+@media (max-width:640px){ .bm-hint{display:none} }
+@media (prefers-reduced-motion:reduce){
+  .bm-slide{transition:none}
+  .ci-dot{animation:none}
+}
+
 /* ============ CONTACT ============ */
 .contact{padding-block:var(--sec);background:
   radial-gradient(900px 500px at 50% 0%, rgba(200,155,60,.12), transparent 60%),
@@ -968,7 +1068,10 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
       <a href="#about">About</a>
       <a href="#culture-share">Culture Share</a>
       <a href="#capability">Capability</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#roadmap">Roadmap</a>
       <a href="#contact">Contact</a>
+      <button class="board-btn" id="boardNavBtn" aria-label="Open board presentation mode"><span class="tri"></span>Board mode</button>
       <span class="nav-cta"><a href="#contact">Get in touch</a></span>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
@@ -982,7 +1085,10 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
   <a href="#about"><small>01</small>About</a>
   <a href="#culture-share"><small>02</small>Culture Share</a>
   <a href="#capability"><small>03</small>Capability</a>
-  <a href="#contact"><small>04</small>Contact</a>
+  <a href="#leadership"><small>04</small>Leadership</a>
+  <a href="#roadmap"><small>05</small>Roadmap</a>
+  <a href="#contact"><small>06</small>Contact</a>
+  <button class="m-cta" id="boardMobBtn" style="width:100%;text-align:left;border:none;background:none;padding:0;margin-top:18px;font:inherit;cursor:pointer"><a style="display:inline-block;background:transparent;color:var(--gold2);border:1px solid var(--line-strong);font-size:1rem;padding:15px 26px;border-radius:var(--r)">▶ Board presentation</a></button>
   <div class="m-cta"><a href="#contact">Get in touch</a></div>
 </div>
 
@@ -1375,10 +1481,108 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
 </section>
 
 
+
+<!-- ================= LEADERSHIP & GOVERNANCE ================= -->
+<section class="lead" id="leadership">
+  <div class="container">
+    <p class="label reveal">04 — Leadership &amp; governance</p>
+    <h2 class="h2 reveal" style="--d:.06s">Who runs the house — <em>and how.</em></h2>
+    <p class="lead reveal" style="--d:.12s">NSH is led by its Founder &amp; Executive Director, supported by a growing executive team across finance, legal, and technology.</p>
+
+    <div class="lead-grid">
+      <div class="l-card reveal" style="--d:.02s">
+        <span class="l-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
+        <h4>Founder &amp; Executive Director</h4>
+        <p class="who">Ntsika Shembe</p>
+        <p>Sets the originating vision — and leads every build to working product.</p>
+      </div>
+      <div class="l-card reveal" style="--d:.06s">
+        <span class="l-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M8.5 21h7"/><path d="M6.5 6.5L4 11.5a2.7 2.7 0 0 0 5 0L6.5 6.5z"/><path d="M17.5 6.5L15 11.5a2.7 2.7 0 0 0 5 0l-2.5-5z"/></svg></span>
+        <h4>Finance</h4>
+        <p class="who">Executive</p>
+        <p>Financial governance discipline — the CST ledger is built to this standard.</p>
+      </div>
+      <div class="l-card reveal" style="--d:.1s">
+        <span class="l-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 7.7-7 9.2-4-1.5-7-4.6-7-9.2V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg></span>
+        <h4>Legal &amp; IP</h4>
+        <p class="who">Executive</p>
+        <p>IP origination and protection — the foundation of the holding model.</p>
+      </div>
+      <div class="l-card reveal" style="--d:.14s">
+        <span class="l-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3L4 7v10l4 4M16 3l4 4v10l-4 4"/><path d="M12 8v8M9.5 11h5"/></svg></span>
+        <h4>Technology</h4>
+        <p class="who">Executive</p>
+        <p>Applied AI, data, and full-stack engineering — proven on Culture Share.</p>
+      </div>
+    </div>
+
+    <div class="gov">
+      <svg class="gov-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <rect x="8.7" y="8.7" width="46.6" height="46.6" transform="rotate(45 32 32)" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M29 51 h6 v-5 h-6 v-4 h4 v-5 h-4 v-4 h2 v-6" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor"/>
+        <rect x="29.4" y="12.6" width="5.2" height="5.2" transform="rotate(45 32 15.2)" fill="currentColor"/>
+      </svg>
+      <div class="reveal" style="--d:.08s">
+        <h3>Governance is part of the product</h3>
+        <p>Financial-governance discipline is built into how NSH engineers — from the CST loyalty ledger to the way IP is originated, held, and overseen. The house is run the way the products are built.</p>
+        <div class="gov-chips">
+          <span>IP ownership</span><span>Financial discipline</span><span>Oversight</span><span>Transparency</span><span>Stewardship</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROADMAP & MILESTONES ================= -->
+<section class="road" id="roadmap">
+  <div class="container">
+    <p class="label reveal">05 — Roadmap &amp; milestones</p>
+    <h2 class="h2 reveal" style="--d:.06s">What comes next — <em>on the record.</em></h2>
+    <p class="lead reveal" style="--d:.12s">A working plan, set out quarter by quarter. Milestones are marked as shipped or planned — the board sees progress, not just promises.</p>
+
+    <div class="road-line">
+      <div class="r-item done reveal" style="--d:.02s">
+        <span class="r-dot"></span>
+        <div class="r-head"><span class="r-when">2026 · Q4</span><span class="r-tag">Shipped</span></div>
+        <h4>Brand, site &amp; deployment foundation</h4>
+        <p>Full brand identity, one-page site, CI/CD pipeline — this page you're reading, live and self-deployed.</p>
+      </div>
+      <div class="r-item reveal" style="--d:.06s">
+        <span class="r-dot"></span>
+        <div class="r-head"><span class="r-when">2027 · Q1</span><span class="r-tag">Planned</span></div>
+        <h4>Culture Share — knowledge base scale-up</h4>
+        <p>Grow the peer-reviewed base by decade and topic; extend AI moderation and the in-platform agent.</p>
+      </div>
+      <div class="r-item reveal" style="--d:.1s">
+        <span class="r-dot"></span>
+        <div class="r-head"><span class="r-when">2027 · Q2</span><span class="r-tag">Planned</span></div>
+        <h4>CST economy — wider rollout</h4>
+        <p>Expand the closed-loop points ledger across the platform with continued financial-governance discipline.</p>
+      </div>
+      <div class="r-item reveal" style="--d:.14s">
+        <span class="r-dot"></span>
+        <div class="r-head"><span class="r-when">2027 · Q3</span><span class="r-tag">Planned</span></div>
+        <h4>Capability arm — partner engagements</h4>
+        <p>Take the Culture Share-proven stack to partners: applied AI, data infrastructure, platform builds, advisory.</p>
+      </div>
+      <div class="r-item reveal" style="--d:.18s">
+        <span class="r-dot"></span>
+        <div class="r-head"><span class="r-when">2027 · Q4</span><span class="r-tag">Planned</span></div>
+        <h4>Team &amp; governance growth</h4>
+        <p>Expand the executive team across finance, legal, and technology as the portfolio and client base grow.</p>
+      </div>
+    </div>
+
+    <div class="r-cta reveal" style="--d:.1s">
+      <a class="btn btn-ghost" href="#contact">Discuss the roadmap with the team</a>
+    </div>
+  </div>
+</section>
+
 <!-- ================= FIRST LAYOUT VARIATION B — signed document finale ================= -->
 <section class="fl fl-doc" id="brand-document">
   <div class="container">
-    <p class="label reveal">04 — First layout · The founding document</p>
+    <p class="label reveal">06 — First layout · The founding document</p>
     <h2 class="h2 reveal" style="--d:.06s">The brand, <em>in one idea.</em></h2>
     <p class="fl-thesis reveal" style="--d:.12s">The company originates ideas, engineers them into working products, and holds the IP it builds.</p>
     <p class="fl-sub reveal" style="--d:.18s">A redesign of the company's web presence and visual identity — every element traces back to that one idea. And the page is signed, in the footer.</p>
@@ -1429,7 +1633,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-panel reveal">
-      <p class="label" style="justify-content:center">05 — Contact</p>
+      <p class="label" style="justify-content:center">07 — Contact</p>
       <h2 class="h2">Let's build what <em>comes next.</em></h2>
       <p class="lead">For partnership, investment, or technology inquiries — reach the NSH team directly.</p>
       <div class="contact-cta">
@@ -1474,6 +1678,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
           <li><a href="#about">About NSH</a></li>
           <li><a href="#culture-share">Culture Share</a></li>
           <li><a href="#capability">Capability</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="#brand-document">Brand document</a></li>
         </ul>
@@ -1520,10 +1726,133 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
     </div>
     <div class="foot-bottom">
       <p>© 2026 Ntsika Shembe Holdings (Pty) Ltd. All rights reserved.</p>
+      <p class="ci"><span class="ci-dot" aria-hidden="true"></span> v<code id="ciVer">__VERSION__</code> · deployed via GitHub Actions · <span id="ciDate">__DATE__</span></p>
       <p class="legal"><span>IP Origination &amp; Technology</span><span>Originate · Engineer · Hold</span></p>
     </div>
   </div>
 </footer>
+
+
+<!-- ================= BOARD MODE (presentation overlay) ================= -->
+<div class="board" id="boardMode" aria-hidden="true">
+  <div class="board-top">
+    <div class="board-brand">
+      <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <rect x="8.7" y="8.7" width="46.6" height="46.6" transform="rotate(45 32 32)" stroke="currentColor" stroke-width="2.6"/>
+        <path d="M29 51 h6 v-5 h-6 v-4 h4 v-5 h-4 v-4 h2 v-6" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="currentColor"/>
+        <rect x="29.4" y="12.6" width="5.2" height="5.2" transform="rotate(45 32 15.2)" fill="currentColor"/>
+      </svg>
+      <span>Ntsika Shembe<small>Holdings</small></span>
+    </div>
+    <button class="board-exit" id="boardExit">✕ Exit presentation</button>
+  </div>
+
+  <div class="board-stage" id="boardStage">
+
+    <section class="bm-slide active" data-bm="0">
+      <svg class="bm-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <rect x="8.7" y="8.7" width="46.6" height="46.6" transform="rotate(45 32 32)" stroke="currentColor" stroke-width="2"/>
+        <path d="M29 51 h6 v-5 h-6 v-4 h4 v-5 h-4 v-4 h2 v-6" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor"/>
+        <rect x="29.4" y="12.6" width="5.2" height="5.2" transform="rotate(45 32 15.2)" fill="currentColor"/>
+      </svg>
+      <p class="bm-kicker">Board briefing · 2026</p>
+      <h2 class="bm-title">We <em>originate</em> ideas, <em>engineer</em> them into working products, and <em>hold</em> the IP we build.</h2>
+      <p class="bm-sub">Ntsika Shembe Holdings (Pty) Ltd — an IP origination holding company based in Vereeniging, Gauteng, South Africa.</p>
+      <p class="bm-note">Press ← → to navigate · Esc to exit</p>
+    </section>
+
+    <section class="bm-slide" data-bm="1">
+      <p class="bm-kicker">01 · The model</p>
+      <h2 class="bm-title">One idea. Three verbs.</h2>
+      <div class="bm-chips">
+        <span><b>Originate</b>Identify the idea — map the concept and its IP.</span>
+        <span><b>Engineer</b>Design, build, and deploy to a working standard.</span>
+        <span><b>Hold</b>Own and operate. Govern and grow — IP kept in-house.</span>
+      </div>
+      <p class="bm-note">Every element of the identity traces back to this idea</p>
+    </section>
+
+    <section class="bm-slide" data-bm="2">
+      <p class="bm-kicker">02 · Flagship platform</p>
+      <h2 class="bm-title">Culture Share</h2>
+      <p class="bm-big">Social connection, a peer-reviewed cultural knowledge base, and applied AI — in one platform.</p>
+      <p class="bm-sub">Built and deployed end to end by the NSH team — the proof of the model in practice.</p>
+    </section>
+
+    <section class="bm-slide" data-bm="3">
+      <p class="bm-kicker">02 · Culture Share</p>
+      <h2 class="bm-title">Four capabilities, <em>one product.</em></h2>
+      <div class="bm-chips">
+        <span><b>AI moderation</b>Decade- &amp; topic-based classification, sensitivity-tuned.</span>
+        <span><b>Discovery</b>“For You” feed from a personalisation engine.</span>
+        <span><b>AI agent</b>In-platform, grounded in the peer-reviewed base.</span>
+        <span><b>CST economy</b>Closed-loop loyalty ledger, governance-grade.</span>
+      </div>
+    </section>
+
+    <section class="bm-slide" data-bm="4">
+      <p class="bm-kicker">02 · Points economy</p>
+      <h2 class="bm-title">A closed-loop <em>digital incentive system.</em></h2>
+      <p class="bm-sub">CST is a loyalty ledger built with financial-governance discipline — not a cryptocurrency. A real incentive layer inside the platform, designed for oversight from day one.</p>
+    </section>
+
+    <section class="bm-slide" data-bm="5">
+      <p class="bm-kicker">03 · Capability</p>
+      <h2 class="bm-title">The same stack, <em>available as a service.</em></h2>
+      <div class="bm-chips">
+        <span>Applied AI &amp; ML</span><span>Conversational AI &amp; agents</span><span>Platform engineering</span><span>Data &amp; digital economy</span><span>Financial &amp; governance tech</span><span>AI strategy &amp; advisory</span>
+      </div>
+      <p class="bm-sub">Proven building Culture Share — then offered to partners at production standard.</p>
+    </section>
+
+    <section class="bm-slide" data-bm="6">
+      <p class="bm-kicker">04 · Leadership &amp; governance</p>
+      <h2 class="bm-title">The house is run <em>the way the products are built.</em></h2>
+      <div class="bm-chips">
+        <span><b>Founder &amp; ED</b>Ntsika Shembe — originating vision.</span>
+        <span><b>Finance</b>Governance discipline.</span>
+        <span><b>Legal &amp; IP</b>Protection of the holdings.</span>
+        <span><b>Technology</b>Applied AI &amp; engineering.</span>
+      </div>
+      <p class="bm-sub">IP ownership · financial discipline · oversight · transparency · stewardship.</p>
+    </section>
+
+    <section class="bm-slide" data-bm="7">
+      <p class="bm-kicker">05 · Roadmap</p>
+      <h2 class="bm-title">2026 → 2027, <em>on the record.</em></h2>
+      <div class="bm-chips">
+        <span><b>Q4 2026 · Shipped</b>Brand, site &amp; deployment foundation.</span>
+        <span><b>Q1 2027</b>Culture Share knowledge base scale-up.</span>
+        <span><b>Q2 2027</b>CST economy wider rollout.</span>
+        <span><b>Q3 2027</b>Capability arm — partner engagements.</span>
+        <span><b>Q4 2027</b>Team &amp; governance growth.</span>
+      </div>
+    </section>
+
+    <section class="bm-slide" data-bm="8">
+      <p class="bm-kicker">06 · The document</p>
+      <h2 class="bm-title">Signed, sealed, <em>delivered.</em></h2>
+      <p class="bm-sub">This site — and every page before it — built under one brand idea, one workflow, one link. Crafted by Nur Amirah Mohd Kamil.</p>
+      <p class="bm-note">v<span id="bmVer">__VERSION__</span> · deployed via GitHub Actions</p>
+    </section>
+
+    <section class="bm-slide" data-bm="9">
+      <p class="bm-kicker">07 · Contact</p>
+      <h2 class="bm-title">Let's build what <em>comes next.</em></h2>
+      <p class="bm-sub">For partnership, investment, or technology inquiries — reach the NSH team directly.</p>
+      <a class="bm-mail" href="mailto:info@ns-holdings.co.za">info@ns-holdings.co.za</a>
+    </section>
+
+  </div>
+
+  <div class="board-bottom">
+    <button class="bm-btn" id="bmPrev" aria-label="Previous slide">‹</button>
+    <div class="bm-dots" id="bmDots" role="group" aria-label="Slide navigation"></div>
+    <span class="bm-count" id="bmCount">01 / 10</span>
+    <button class="bm-btn" id="bmNext" aria-label="Next slide">›</button>
+    <span class="bm-hint">← → navigate · Esc exit</span>
+  </div>
+</div>
 
 <!-- ================= MUSIC WIDGET ================= -->
 <div class="music-widget" role="region" aria-label="Background music">
@@ -2247,5 +2576,83 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
   else window.addEventListener('load', tryAutoplay);
 })();
 </script>
+
+<script>
+/* ============ BOARD MODE — full-screen guided presentation ============ */
+(function(){
+  var board = document.getElementById('boardMode');
+  var stage = document.getElementById('boardStage');
+  var navBtn = document.getElementById('boardNavBtn');
+  var mobBtn = document.getElementById('boardMobBtn');
+  if (!board || !stage) return;
+
+  var slides = Array.prototype.slice.call(stage.querySelectorAll('.bm-slide'));
+  var dotsWrap = document.getElementById('bmDots');
+  var countEl = document.getElementById('bmCount');
+  var dots = [];
+  var cur = 0, n = slides.length;
+
+  slides.forEach(function(s, i){
+    var d = document.createElement('button');
+    d.className = 'bm-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i+1));
+    d.addEventListener('click', function(){ go(i); });
+    dotsWrap.appendChild(d); dots.push(d);
+  });
+
+  function go(i){
+    cur = Math.max(0, Math.min(n - 1, i));
+    slides.forEach(function(s, k){ s.classList.toggle('active', k === cur); });
+    dots.forEach(function(d, k){ d.classList.toggle('active', k === cur); });
+    if (countEl) countEl.textContent = String(cur + 1).padStart(2,'0') + ' / ' + String(n).padStart(2,'0');
+  }
+  function next(){ go(cur + 1); }
+  function prev(){ go(cur - 1); }
+
+  function open(){
+    board.classList.add('open');
+    board.setAttribute('aria-hidden','false');
+    document.body.classList.add('no-scroll');
+    go(cur);
+    try { if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(function(){}); } catch(e){}
+  }
+  function close(){
+    board.classList.remove('open');
+    board.setAttribute('aria-hidden','true');
+    document.body.classList.remove('no-scroll');
+    try { if (document.fullscreenElement) document.exitFullscreen().catch(function(){}); } catch(e){}
+  }
+
+  function openBtn(e){ e.preventDefault(); open(); }
+  if (navBtn) navBtn.addEventListener('click', openBtn);
+  if (mobBtn) mobBtn.addEventListener('click', openBtn);
+  document.getElementById('boardExit').addEventListener('click', close);
+  document.getElementById('bmNext').addEventListener('click', next);
+  document.getElementById('bmPrev').addEventListener('click', prev);
+
+  document.addEventListener('keydown', function(e){
+    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    if (e.key === 'b' || e.key === 'B'){ e.preventDefault(); board.classList.contains('open') ? close() : open(); return; }
+    if (!board.classList.contains('open')) return;
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown'){ e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); prev(); }
+    else if (e.key === 'Escape'){ close(); }
+    else if (e.key === 'Home'){ go(0); }
+    else if (e.key === 'End'){ go(n - 1); }
+  });
+
+  /* version fallback for local/preview use (CI stamps the real values) */
+  function fillVer(){
+    ['ciVer','bmVer'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el && el.textContent.indexOf('__VERSION__') !== -1) el.textContent = 'local';
+    });
+    var d = document.getElementById('ciDate');
+    if (d && d.textContent.indexOf('__DATE__') !== -1) d.textContent = 'preview';
+  }
+  fillVer();
+})();
+</script>
+
 </body>
 </html>

@@ -21,9 +21,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Stamp build version
+        run: |
+          VERSION=$(git rev-parse --short HEAD)
+          DATE=$(date -u +%Y-%m-%d)
+          sed -i "s/__VERSION__/${VERSION}/g; s/__DATE__/${DATE}/g" index.html
+          echo "stamped v${VERSION} · ${DATE}"
+
       - name: Validate site bundle
         run: |
           test -f index.html
+          ! grep -q "__VERSION__\|__DATE__" index.html && echo "build version stamped ✓"
           test -f sitemap.xml
           test -f robots.txt
           test -f site.webmanifest
