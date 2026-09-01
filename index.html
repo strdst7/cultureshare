@@ -344,27 +344,27 @@ section{position:relative;scroll-margin-top:72px}
   position:sticky;top:0;height:100vh;height:100svh;
   display:flex;align-items:center;overflow:hidden;
 }
-.story-view{width:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,4.5vw,64px);align-items:center}
-.story-left{display:flex;align-items:center;gap:20px}
-.story-texts{position:relative;min-height:320px;flex:1}
+.story-view{width:100%;max-width:920px;margin-inline:auto;display:grid;grid-template-columns:1fr;gap:0;justify-items:center}
+
+.story-texts{position:relative;min-height:340px;width:100%;max-width:820px;margin-inline:auto}
 .scene{
-  position:absolute;inset:0 auto auto 0;width:100%;max-width:480px;
+  position:absolute;top:0;left:0;right:0;width:100%;max-width:820px;margin-inline:auto;padding-inline:clamp(0px,4vw,40px);
   opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease;
   pointer-events:none;
 }
 .scene.active{opacity:1;transform:none;pointer-events:auto}
 .scene-num{
-  display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;
-  color:#9A7327;border:1px solid rgba(154,115,39,.4);border-radius:999px;padding:.45em 1em;background:rgba(154,115,39,.07);
+  display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;
+  color:#9A7327;border:1px solid rgba(154,115,39,.4);border-radius:999px;padding:.5em 1.1em;background:rgba(154,115,39,.08);
 }
 .scene h3{
-  font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,2.6vw,2.1rem);
+  font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3vw,2.5rem);
   color:#221808;line-height:1.12;margin:.7em 0 .5em;letter-spacing:-.01em;text-wrap:balance;
 }
-.scene p{font-size:.95rem;color:rgba(27,20,11,.72);max-width:46ch}
+.scene p{font-size:clamp(1rem,1.4vw,1.12rem);color:rgba(27,20,11,.74);max-width:60ch;line-height:1.7}
 .scene-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.2em}
 .scene-meta span{font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#7A5A16;border-bottom:1px dashed rgba(154,115,39,.45);padding-bottom:.2em}
-.story-dots{display:flex;flex-direction:column;gap:14px}
+.story-dots{display:flex;flex-direction:row;justify-content:center;gap:18px;margin-top:42px}
 .story-dot{
   width:12px;height:12px;border-radius:50%;border:1.5px solid rgba(154,115,39,.5);
   background:transparent;transition:.3s;padding:0;
@@ -463,7 +463,7 @@ section{position:relative;scroll-margin-top:72px}
 
   .story-phone .phone-screen{height:430px}
   .scene-meta{display:none}
-  .story-left{align-items:flex-start}
+  
   .story-stage{height:470vh}
 }
 @media (prefers-reduced-motion:reduce){
@@ -1348,8 +1348,7 @@ html{scroll-padding-top:96px}
       <div class="story-stage" id="storyStage">
         <div class="story-pinned">
           <div class="container story-view">
-            <div class="story-left">
-              <div class="story-texts">
+            <div class="story-texts">
                 <div class="scene active" data-scene="0">
                   <span class="scene-num">01 — Moderation</span>
                   <h3>AI-powered moderation</h3>
@@ -1381,97 +1380,7 @@ html{scroll-padding-top:96px}
                 <button class="story-dot" data-dot="2" aria-label="Scene 3 — AI agent"></button>
                 <button class="story-dot" data-dot="3" aria-label="Scene 4 — Points economy"></button>
               </div>
-            </div>
-            <div class="story-phone">
-              <div class="phone">
-                <div class="phone-screen">
-                  <div class="screen active" data-scene="0">
-                    <div class="app">
-                      <div class="app-top">
-                        <span class="app-brand">Culture Share</span>
-                        <span class="app-pts">+25 CST</span>
-                      </div>
-                      <div class="app-tabs"><span class="on">For You</span><span>Decades</span><span>Topics</span></div>
-                      <div class="mod-card">
-                        <span class="mod-ic"></span>
-                        <div><b>Cleared for the 1980s · Music board</b><small>AI review · sensitivity-checked</small></div>
-                      </div>
-                      <div class="post">
-                        <div class="post-tag">Music · 1980s · Soweto</div>
-                        <div class="post-title">When mbaqanga crossed the border</div>
-                        <div class="post-text">The Mahotella Queens take township jazz abroad — and bring a new audience home.</div>
-                        <div class="post-meta"><span class="avatar">MK</span><div><b>Miriam's archive</b><small>On the 1980s music board</small></div></div>
-                      </div>
-                      <div class="post">
-                        <div class="post-tag">Language · isiZulu</div>
-                        <div class="post-title">Isithunzi — a word with weight</div>
-                        <div class="post-text">Why dignity and presence share one word — and how it shapes a greeting, a handshake.</div>
-                        <div class="post-meta"><span class="avatar">NM</span><div><b>Nompumelelo M.</b><small>From the language board</small></div></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="screen" data-scene="1">
-                    <div class="app">
-                      <div class="app-top">
-                        <span class="app-brand">For You</span>
-                        <span class="app-pts">Cape Town</span>
-                      </div>
-                      <div class="app-tabs"><span class="on">For You</span><span>Decades</span><span>Topics</span></div>
-                      <div class="disc-card">
-                        <span class="avatar">TK</span>
-                        <div><b>Matches your saved topic</b><small>amapiano · 2010s · Gauteng</small></div>
-                      </div>
-                      <div class="post">
-                        <div class="post-tag">Your topic · Amapiano · 2010s</div>
-                        <div class="post-title">Gauteng's log-drum revolution</div>
-                        <div class="post-text">Why the log drum carried the 2010s — and the township sound behind a generation.</div>
-                        <div class="post-meta"><span class="avatar">LP</span><div><b>Lerato P.</b><small>Suggested for you</small></div></div>
-                      </div>
-                      <div class="post">
-                        <div class="post-tag">Your topic · Cape heritage</div>
-                        <div class="post-title">Kaapse Klopse, explained</div>
-                        <div class="post-text">The Cape Minstrel carnival in ten lines — music, uniforms, and the city's oldest tradition.</div>
-                        <div class="post-meta"><span class="avatar">AB</span><div><b>Ammaarah B.</b><small>Suggested for you</small></div></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="screen" data-scene="2">
-                    <div class="app">
-                      <div class="app-top">
-                        <span class="app-brand">AI agent</span>
-                        <span class="app-pts">Online</span>
-                      </div>
-                      <div class="chatmini">
-                        <div class="msg user"><span class="who">You</span><span>What happens at a Zulu wedding?</span></div>
-                        <div class="msg agent"><span class="who">AI agent</span><span>Lobola negotiations open it, led by the elders on both sides. Then umembeso — the bride-price handover at the groom's home — and on the day itself, praise singing and dance. The order is set by the families.</span></div>
-                        <div class="msg user"><span class="who">You</span><span>And in the 1980s?</span></div>
-                        <div class="typing-row"><span class="ai-badge">AI agent</span><span>typing…</span></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="screen" data-scene="3">
-                    <div class="app">
-                      <div class="app-top">
-                        <span class="app-brand">Culture Share</span>
-                        <span class="app-pts">Wallet</span>
-                      </div>
-                      <div class="cst-hero">
-                        <span class="cst-hero-lab">CST balance</span>
-                        <span class="cst-hero-val">1,240 <small>CST</small></span>
-                        <span class="cst-hero-toast">+25 · review</span>
-                      </div>
-                      <div class="ledger">
-                        <div class="led-row"><span>+25</span><div><b>Post cleared for a board</b><small>today · 14:02</small></div></div>
-                        <div class="led-row"><span>+10</span><div><b>Answered a question</b><small>today · 11:37</small></div></div>
-                        <div class="led-row"><span>+5</span><div><b>Daily visit</b><small>today · 08:01</small></div></div>
-                      </div>
-                      <div class="cst-cta">CST · earned by contributing, spent in-platform</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p class="cu-note">Illustrative preview — scroll to step through</p>
-            </div>
+
           </div>
         </div>
       </div>
@@ -2428,8 +2337,8 @@ html{scroll-padding-top:96px}
     if (idx === lastIdx) return;
     lastIdx = idx;
     for (var i = 0; i < n; i++){
-      scenes[i].classList.toggle('active', i === idx);
-      screens[i].classList.toggle('active', i === idx);
+      if (scenes[i]) scenes[i].classList.toggle('active', i === idx);
+      if (screens[i]) screens[i].classList.toggle('active', i === idx);
       if (dots[i]) dots[i].classList.toggle('active', i <= idx);
     }
   }
