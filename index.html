@@ -1031,6 +1031,90 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
   .hero-meta{margin-top:44px}
   .est-vert{display:none}
 }
+
+/* ==================== POLISH LAYER — global refinement pass ==================== */
+html{scroll-padding-top:96px}
+::selection{background:var(--gold);color:var(--ink)}
+
+/* slim branded scrollbar (desktop) */
+@media (min-width:768px){
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--ink)}
+  ::-webkit-scrollbar-thumb{background:#251d12;border:3px solid var(--ink);border-radius:8px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+}
+
+/* universal keyboard focus */
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+
+/* nav: shrink on scroll + active section underline + hover sweep */
+.nav-in{transition:height .35s cubic-bezier(.2,.7,.2,1)}
+.nav.scrolled .nav-in{height:62px}
+.nav-links > a{position:relative}
+.nav-links > a::after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--ember));opacity:.9;transition:right .35s cubic-bezier(.2,.7,.2,1)}
+.nav-links > a:hover::after{right:0}
+.nav-links > a.active{color:var(--gold2)}
+.nav-links > a.active::after{right:0;background:linear-gradient(90deg,var(--gold2),var(--gold))}
+
+/* hero: scroll cue */
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:3;width:1px;height:52px;overflow:hidden;opacity:1;transition:opacity .6s ease;pointer-events:none}
+.scroll-cue::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--gold),transparent 85%)}
+.scroll-cue::after{content:"";position:absolute;left:50%;top:-6px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--gold2);box-shadow:0 0 8px rgba(200,155,60,.8);animation:cueDrop 2.3s cubic-bezier(.45,0,.2,1) infinite}
+.scroll-cue.gone{opacity:0}
+@keyframes cueDrop{0%{transform:translateY(-8px);opacity:0}16%{opacity:1}78%{transform:translateY(54px);opacity:0}100%{transform:translateY(54px);opacity:0}}
+
+/* ticker: soft edge fade instead of hard cut */
+.ticker{-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+
+/* buttons: press feedback + depth on gold */
+.btn:active{transform:translateY(0) scale(.97)}
+.btn-gold{box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 28px -16px rgba(200,155,60,.5)}
+.btn-gold:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 18px 42px -18px rgba(200,155,60,.65)}
+.btn-ghost:hover{background:rgba(200,155,60,.07)}
+
+/* capability + leadership cards: lift, glow, icon life */
+.svc,.l-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s ease,box-shadow .35s ease,background .35s ease}
+.svc:hover,.l-card:hover{transform:translateY(-5px);border-color:var(--line-strong);background:var(--card2);box-shadow:0 28px 56px -32px rgba(200,155,60,.42)}
+.svc-icon,.l-ic{transition:transform .35s ease,color .35s ease}
+.svc:hover .svc-icon,.l-card:hover .l-ic{transform:scale(1.1) rotate(-4deg);color:var(--gold2)}
+
+/* roadmap: gentle lift on the dot, title warms to gold */
+.r-item{transition:transform .3s ease}
+.r-item:hover{transform:translateY(-3px)}
+.r-item:hover h4{color:var(--gold2)}
+.r-item:hover .r-dot{box-shadow:0 0 0 7px rgba(200,155,60,.14)}
+.r-item.done .r-dot{animation:doneGlow 3.2s ease-in-out infinite}
+@keyframes doneGlow{0%,100%{box-shadow:0 0 0 4px rgba(200,155,60,.28)}50%{box-shadow:0 0 0 9px rgba(200,155,60,.10)}}
+
+/* contact panel: gold hairline + mail button depth */
+.contact-panel::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:clamp(160px,30vw,280px);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.mail-big{transition:transform .25s ease,box-shadow .25s ease,background .25s ease;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 12px 30px -16px rgba(200,155,60,.55)}
+.mail-big:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 20px 44px -18px rgba(200,155,60,.7)}
+.contact-chips span{transition:border-color .25s ease,color .25s ease}
+.contact-chips span:hover{border-color:var(--line-strong);color:var(--gold2)}
+
+/* footer: link underlines + brand warm on hover */
+.foot-col a{position:relative}
+.foot-col a::after{content:"";position:absolute;left:0;right:100%;bottom:-3px;height:1px;background:var(--gold);transition:right .3s ease}
+.foot-col a:hover::after{right:0}
+.foot-brand a.brand:hover .wm-1{color:var(--gold2)}
+.foot-brand a.brand:hover .mark{transform:rotate(8deg)}
+.brand .mark{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+
+/* board mode: nav dots get clearer hover/focus states */
+.bm-dot{transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.bm-dot:hover{transform:scale(1.25);background:var(--gold2)}
+.bm-btn:hover{color:var(--gold2);border-color:var(--gold)}
+
+/* reduced motion: neutralise polish-only animation */
+@media (prefers-reduced-motion:reduce){
+  .scroll-cue{display:none}
+  .ticker-track{animation:none}
+  .r-item.done .r-dot{animation:none}
+  .svc,.l-card,.r-item{transition:none}
+  .nav-links > a::after{display:none}
+  .foot-col a::after{display:none}
+}
 </style>
 </head>
 <body>
@@ -1137,7 +1221,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
     </div>
   </div>
 
-  <div class="ticker" aria-hidden="true">
+<div class="scroll-cue" id="scrollCue" aria-hidden="true"></div>
+    <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
       <span>Originate <i></i> Engineer <i></i> Hold <i></i> IP Origination <i></i> Applied AI <i></i> Culture Share <i></i> Concept to Live <i></i></span>
       <span>Originate <i></i> Engineer <i></i> Hold <i></i> IP Origination <i></i> Applied AI <i></i> Culture Share <i></i> Concept to Live <i></i></span>
@@ -2651,6 +2736,33 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
     if (d && d.textContent.indexOf('__DATE__') !== -1) d.textContent = 'preview';
   }
   fillVer();
+})();
+</script>
+
+
+<script>
+/* ============ POLISH: scrollspy nav + scroll cue ============ */
+(function(){
+  var spyLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links > a[href^="#"]'));
+  var map = {};
+  spyLinks.forEach(function(a){ var id = a.getAttribute('href').slice(1); if (document.getElementById(id)) map[id] = a; });
+  var ids = Object.keys(map);
+  if (ids.length && 'IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          ids.forEach(function(id){ if (map[id]) map[id].classList.toggle('active', id === en.target.id); });
+        }
+      });
+    },{rootMargin:'-40% 0px -55% 0px',threshold:0});
+    ids.forEach(function(id){ var el = document.getElementById(id); if (el) spy.observe(el); });
+  }
+  var cue = document.getElementById('scrollCue');
+  if (cue){
+    var tick = function(){ cue.classList.toggle('gone', (window.scrollY || 0) > 90); };
+    window.addEventListener('scroll', tick, {passive:true});
+    tick();
+  }
 })();
 </script>
 
