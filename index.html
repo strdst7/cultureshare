@@ -264,16 +264,7 @@ section{position:relative;scroll-margin-top:72px}
 .culture .h2 em{color:#9A7327}
 .culture .lead{color:rgba(27,20,11,.72);max-width:60ch}
 .cu-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,84px);margin-top:clamp(40px,6vw,64px);align-items:start}
-.feats{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.feat{
-  background:rgba(255,255,255,.55);border:1px solid rgba(154,115,39,.22);border-radius:var(--r);
-  padding:clamp(20px,2.4vw,26px);transition:.3s;position:relative;overflow:hidden;
-}
-.feat:hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(90,60,10,.35);border-color:rgba(154,115,39,.5)}
-.feat .f-icon{width:42px;height:42px;border-radius:9px;background:#1B140B;color:var(--gold2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-.feat .f-icon svg{width:22px;height:22px}
-.feat h4{font-family:var(--serif);font-size:1.22rem;font-weight:620;color:#221808;letter-spacing:-.01em}
-.feat p{font-size:.87rem;color:rgba(27,20,11,.72);margin-top:.55em}
+
 .cu-visual{position:relative}
 .cu-note{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(27,20,11,.5);font-weight:700;text-align:center;margin-top:18px}
 /* ============ CAPABILITY ============ */
@@ -926,7 +917,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
   body.no-scroll{overflow:hidden}
   .meta-grid{grid-template-columns:1fr 1fr;gap:0}
   .meta-item{padding:18px 12px 18px 0}
-  .feats{grid-template-columns:1fr}
+  
   .svc-grid{grid-template-columns:1fr}
   .p-row{grid-template-columns:1fr}
   .p-step + .p-step{border-left:none;border-top:1px solid var(--line)}
@@ -954,6 +945,21 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
 @media (max-width:700px){
   .hero3d-glow{left:56%;width:min(70vmin,340px);height:min(70vmin,340px);opacity:.55}
 }
+
+/* Culture Share — live badge + feature grid */
+.cu-badge{display:inline-flex;align-items:center;gap:.55em;margin-top:20px;padding:.5em 1.1em;border:1px solid rgba(154,115,39,.45);border-radius:999px;background:rgba(154,115,39,.08);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7A5A16}
+.cu-badge .live-dot{width:8px;height:8px;border-radius:50%;background:#2E8B57;box-shadow:0 0 0 0 rgba(46,139,87,.55);animation:ciPulse 2.4s infinite;flex:none}
+.cu-badge a{color:#5C420F;text-decoration:underline;text-underline-offset:3px;font-weight:800;transition:color .25s ease}
+.cu-badge a:hover{color:#3E2C09}
+.cu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:clamp(36px,4.5vw,52px);text-align:left}
+.cu-card{background:rgba(255,255,255,.55);border:1px solid rgba(154,115,39,.22);border-radius:var(--r);padding:clamp(20px,2.4vw,26px);transition:.3s;position:relative;overflow:hidden}
+.cu-card:hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(90,60,10,.35);border-color:rgba(154,115,39,.5)}
+.cu-card .cu-ic{width:42px;height:42px;border-radius:9px;background:#1B140B;color:var(--gold2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.cu-card .cu-ic svg{width:22px;height:22px}
+.cu-card h4{font-family:var(--serif);font-size:1.22rem;font-weight:620;color:#221808;letter-spacing:-.01em}
+.cu-card p{font-size:.87rem;color:rgba(27,20,11,.72);margin-top:.55em;line-height:1.65}
+@media (max-width:700px){.cu-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.cu-card{transition:none}.cu-badge .live-dot{animation:none}}
 
 /* ==================== POLISH LAYER — global refinement pass ==================== */
 html{scroll-padding-top:96px}
@@ -1212,8 +1218,32 @@ html{scroll-padding-top:96px}
   <div class="container">
     <p class="label reveal">02 — Flagship platform</p>
     <h2 class="h2 reveal" style="--d:.06s">Culture Share</h2>
-    <p class="lead reveal" style="--d:.12s">A cultural technology platform combining social connection, a peer-reviewed cultural knowledge base, and applied AI — built and deployed end to end by the NSH team.</p>
+    <p class="lead reveal" style="--d:.12s">A live cultural technology platform combining social connection, a peer-reviewed cultural knowledge base, and applied AI — built and deployed end to end by the NSH team.</p>
 
+    <p class="cu-badge reveal" style="--d:.16s"><span class="live-dot" aria-hidden="true"></span>Live in production — <a href="https://cultureshare.co.za" target="_blank" rel="noopener">cultureshare.co.za</a></p>
+
+    <div class="cu-grid reveal" style="--d:.18s">
+      <div class="cu-card">
+        <span class="cu-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 7.6-7 9-4-1.4-7-4.4-7-9V6l7-3z"/><path d="M9.3 12l2 2.2 3.6-4.4"/></svg></span>
+        <h4>AI-powered moderation</h4>
+        <p>Automated content moderation with decade- and topic-based classification, tuned for culturally sensitive material and running on real user content today.</p>
+      </div>
+      <div class="cu-card">
+        <span class="cu-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3z"/></svg></span>
+        <h4>Personalised discovery</h4>
+        <p>A &ldquo;For You&rdquo; feed built on a personalisation engine that learns from user behaviour across the platform&rsquo;s cultural knowledge base.</p>
+      </div>
+      <div class="cu-card">
+        <span class="cu-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v11H8.5L4 20v-14.5z"/><path d="M8.5 11h7M8.5 14h4"/></svg></span>
+        <h4>In-platform AI agent</h4>
+        <p>A conversational AI agent embedded directly in the product, working against a structured, peer-reviewed content base rather than generic chat.</p>
+      </div>
+      <div class="cu-card">
+        <span class="cu-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3.5V9h-5.5"/></svg></span>
+        <h4>Closed-loop points economy</h4>
+        <p>CST, a closed-loop loyalty ledger built with financial-governance discipline &mdash; not a cryptocurrency, but a real digital incentive system running in production.</p>
+      </div>
+    </div>
         <div class="story">
       <p class="story-scrollhint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Scroll to explore</p>
       <div class="story-stage" id="storyStage">
