@@ -1115,6 +1115,36 @@ html{scroll-padding-top:96px}
   .nav-links > a::after{display:none}
   .foot-col a::after{display:none}
 }
+
+/* ==================== CULTURE SHARE ALIVE — agent demo visibility + phone life ==================== */
+/* compact chat so chips + input are on screen when the panel is reached */
+.agent-demo .chat{height:clamp(168px,22vh,220px)}
+.agent-demo .chips{margin:14px 0 12px}
+.agent-demo .chips::before{content:"Try a question";display:block;width:100%;font-size:.6rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:rgba(243,236,220,.45);margin-bottom:8px}
+@media (max-width:1020px){
+  .agent-head{padding:16px 18px}
+  .agent-avatar{width:38px;height:38px}
+  .agent-id h3{font-size:1.05rem}
+  .agent-body{padding:16px 18px 12px}
+  .agent-demo .chat{height:clamp(150px,26vh,196px)}
+}
+/* the panel visibly breathes: gold hairline sheen across the top */
+.agent-demo{position:relative}
+.agent-demo::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(420px,80%);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+/* phone micro-life: moderation check pops, typing dots bounce, ledger row glows */
+.mod-ic{animation:modPop 3.4s ease-in-out infinite}
+@keyframes modPop{0%,58%,100%{transform:scale(1)}66%{transform:scale(1.16)}74%{transform:scale(1)}}
+.typing-row .ai-badge{animation:tyBadge 2.2s ease-in-out infinite}
+@keyframes tyBadge{0%,100%{opacity:.75}50%{opacity:1}}
+.cst-hero-toast{animation:toastUp 3s ease infinite}
+.led-row:first-child{animation:ledGlow 3.6s ease-in-out infinite}
+@keyframes ledGlow{0%,100%{background:rgba(255,255,255,.03)}50%{background:rgba(200,155,60,.10)}}
+/* agent avatar gentle glow so the demo reads as live */
+.agent-avatar{animation:avGlow 3s ease-in-out infinite}
+@keyframes avGlow{0%,100%{box-shadow:0 0 0 0 rgba(200,155,60,.35)}50%{box-shadow:0 0 0 7px rgba(200,155,60,0)}}
+@media (prefers-reduced-motion:reduce){
+  .agent-avatar,.mod-ic,.typing-row .ai-badge,.cst-hero-toast,.led-row:first-child{animation:none}
+}
 </style>
 </head>
 <body>
@@ -2206,6 +2236,7 @@ html{scroll-padding-top:96px}
       })();
     }, 480 + Math.random() * 420);
   }
+  window.__csType = typeAnswer;
   /* ---- CST ledger ---- */
   var cst = 120, first = true;
   function animate(from, to){
@@ -2739,6 +2770,28 @@ html{scroll-padding-top:96px}
 })();
 </script>
 
+
+
+<script>
+/* ============ CULTURE SHARE: agent demo self-demo (fires once when in view) ============ */
+(function(){
+  var demo = document.querySelector('.agent-demo');
+  var type = window.__csType;
+  if (!demo || !type || !('IntersectionObserver' in window)) return;
+  var done = false;
+  var io = new IntersectionObserver(function(entries){
+    if (done) return;
+    if (entries.some(function(e){ return e.isIntersecting; })){
+      done = true;
+      setTimeout(function(){
+        type("Ask me anything below — or tap a suggested question. Every answer is grounded in the peer-reviewed knowledge base.");
+      }, 750);
+      io.disconnect();
+    }
+  }, {threshold:.3});
+  io.observe(demo);
+})();
+</script>
 
 <script>
 /* ============ POLISH: scrollspy nav + scroll cue ============ */
