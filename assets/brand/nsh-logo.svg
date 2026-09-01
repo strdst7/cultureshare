@@ -1,0 +1,15 @@
+<svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 152" width="760" height="152" role="img" aria-label="Ntsika Shembe Holdings — brand logo">
+  <g transform="translate(0,30)">
+    <g transform="translate(12,14)" style="color:#C89B3C">
+  <g id="mark">
+    <rect x="8.7" y="8.7" width="46.6" height="46.6" transform="rotate(45 32 32)" fill="none" stroke="currentColor" stroke-width="2.6"/>
+    <path d="M29 51 h6 v-5 h-6 v-4 h4 v-5 h-4 v-4 h2 v-6" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="currentColor"/>
+    <rect x="29.4" y="12.6" width="5.2" height="5.2" transform="rotate(45 32 15.2)" fill="currentColor"/>
+  </g></g>
+    <g fill="#0B0906" style="font-family:'Fraunces','Fraunces Variable',Georgia,'Times New Roman',serif">
+      <text id="wm1" x="164" y="40" font-size="33" font-weight="600" letter-spacing="0.3">Ntsika Shembe</text>
+    </g>
+    <text id="wm2" x="164" y="78" font-size="17" font-weight="800" letter-spacing="7"
+          style="font-family:Manrope,'Manrope Variable',Arial,sans-serif;fill:#C89B3C">HOLDINGS</text>
+  </g>
+</svg>
