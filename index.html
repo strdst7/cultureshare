@@ -271,7 +271,7 @@ section{position:relative;scroll-margin-top:72px}
 .feat p{font-size:.87rem;color:rgba(27,20,11,.72);margin-top:.55em}
 .cu-visual{position:relative}
 .cu-note{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(27,20,11,.5);font-weight:700;text-align:center;margin-top:18px}
-============ CAPABILITY ============ */
+/* ============ CAPABILITY ============ */
 .cap{background:var(--ink);padding-block:var(--sec)}
 .cap::before{
   content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
@@ -940,6 +940,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
 .cu-outro-link:hover span{transform:translateX(4px)}
 @media (prefers-reduced-motion:reduce){.cu-outro-link,.cu-outro-link span{transition:none}}
 
+/* Gold CTAs — keep focus ring visible on gold surfaces */
+.btn-gold:focus-visible,.nav-cta a:focus-visible{outline-color:var(--bone)}
 /* ==================== POLISH LAYER — global refinement pass ==================== */
 html{scroll-padding-top:96px}
 ::selection{background:var(--gold);color:var(--ink)}
@@ -1025,6 +1027,7 @@ html{scroll-padding-top:96px}
 }
 
 </style>
+<noscript><style>#intro{display:none!important}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -1064,10 +1067,10 @@ html{scroll-padding-top:96px}
       <a href="#leadership">Leadership</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#contact">Contact</a>
-      <button class="board-btn" id="boardNavBtn" aria-label="Open board presentation mode"><span class="tri"></span>Board mode</button>
+      <button type="button" class="board-btn" id="boardNavBtn" aria-label="Open board presentation mode"><span class="tri"></span>Board mode</button>
       <span class="nav-cta"><a href="#contact">Get in touch</a></span>
     </nav>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1081,7 +1084,7 @@ html{scroll-padding-top:96px}
   <a href="#leadership"><small>04</small>Leadership</a>
   <a href="#roadmap"><small>05</small>Roadmap</a>
   <a href="#contact"><small>06</small>Contact</a>
-  <button class="m-cta" id="boardMobBtn" style="width:100%;text-align:left;border:none;background:none;padding:0;margin-top:18px;font:inherit;cursor:pointer"><a style="display:inline-block;background:transparent;color:var(--gold2);border:1px solid var(--line-strong);font-size:1rem;padding:15px 26px;border-radius:var(--r)">▶ Board presentation</a></button>
+  <button type="button" class="m-cta" id="boardMobBtn" style="width:100%;text-align:left;border:none;background:none;padding:0;margin-top:18px;font:inherit;cursor:pointer"><a style="display:inline-block;background:transparent;color:var(--gold2);border:1px solid var(--line-strong);font-size:1rem;padding:15px 26px;border-radius:var(--r)">▶ Board presentation</a></button>
   <div class="m-cta"><a href="#contact">Get in touch</a></div>
 </div>
 
@@ -1229,10 +1232,10 @@ html{scroll-padding-top:96px}
                 </div>
               </div>
               <div class="story-dots" role="group" aria-label="Culture Share features">
-                <button class="story-dot active" data-dot="0" aria-label="Scene 1 — AI moderation"></button>
-                <button class="story-dot" data-dot="1" aria-label="Scene 2 — Personalised discovery"></button>
-                <button class="story-dot" data-dot="2" aria-label="Scene 3 — AI agent"></button>
-                <button class="story-dot" data-dot="3" aria-label="Scene 4 — Points economy"></button>
+                <button type="button" class="story-dot active" data-dot="0" aria-label="Scene 1 — AI moderation"></button>
+                <button type="button" class="story-dot" data-dot="1" aria-label="Scene 2 — Personalised discovery"></button>
+                <button type="button" class="story-dot" data-dot="2" aria-label="Scene 3 — AI agent"></button>
+                <button type="button" class="story-dot" data-dot="3" aria-label="Scene 4 — Points economy"></button>
               </div>
 
           </div>
@@ -1288,15 +1291,15 @@ html{scroll-padding-top:96px}
     <div class="prov-picker reveal" style="--d:.2s">
       <span class="picker-lab">Jump to a province</span>
       <div class="picker-chips">
-        <button class="picker-chip" data-p="GT">Gauteng</button>
-        <button class="picker-chip" data-p="KZN">KwaZulu-Natal</button>
-        <button class="picker-chip" data-p="WC">Western Cape</button>
-        <button class="picker-chip" data-p="EC">Eastern Cape</button>
-        <button class="picker-chip" data-p="NC">Northern Cape</button>
-        <button class="picker-chip" data-p="FS">Free State</button>
-        <button class="picker-chip" data-p="LIM">Limpopo</button>
-        <button class="picker-chip" data-p="MP">Mpumalanga</button>
-        <button class="picker-chip" data-p="NW">North West</button>
+        <button type="button" class="picker-chip" data-p="GT">Gauteng</button>
+        <button type="button" class="picker-chip" data-p="KZN">KwaZulu-Natal</button>
+        <button type="button" class="picker-chip" data-p="WC">Western Cape</button>
+        <button type="button" class="picker-chip" data-p="EC">Eastern Cape</button>
+        <button type="button" class="picker-chip" data-p="NC">Northern Cape</button>
+        <button type="button" class="picker-chip" data-p="FS">Free State</button>
+        <button type="button" class="picker-chip" data-p="LIM">Limpopo</button>
+        <button type="button" class="picker-chip" data-p="MP">Mpumalanga</button>
+        <button type="button" class="picker-chip" data-p="NW">North West</button>
       </div>
     </div>
   </div>
@@ -1612,7 +1615,7 @@ html{scroll-padding-top:96px}
       </svg>
       <span>Ntsika Shembe<small>Holdings</small></span>
     </div>
-    <button class="board-exit" id="boardExit">✕ Exit presentation</button>
+    <button type="button" class="board-exit" id="boardExit">✕ Exit presentation</button>
   </div>
 
   <div class="board-stage" id="boardStage">
@@ -1714,10 +1717,10 @@ html{scroll-padding-top:96px}
   </div>
 
   <div class="board-bottom">
-    <button class="bm-btn" id="bmPrev" aria-label="Previous slide">‹</button>
+    <button type="button" class="bm-btn" id="bmPrev" aria-label="Previous slide">‹</button>
     <div class="bm-dots" id="bmDots" role="group" aria-label="Slide navigation"></div>
     <span class="bm-count" id="bmCount">01 / 10</span>
-    <button class="bm-btn" id="bmNext" aria-label="Next slide">›</button>
+    <button type="button" class="bm-btn" id="bmNext" aria-label="Next slide">›</button>
     <span class="bm-hint">← → navigate · Esc exit</span>
   </div>
 </div>
@@ -1725,7 +1728,7 @@ html{scroll-padding-top:96px}
 <!-- ================= MUSIC WIDGET ================= -->
 <div class="music-widget" role="region" aria-label="Background music">
   <span class="m-label" id="musicLabel">South African groove</span>
-  <button class="music-btn" id="musicBtn" aria-pressed="false" aria-label="Play or pause South African background music" title="South African groove — play / pause">
+  <button type="button" class="music-btn" id="musicBtn" aria-pressed="false" aria-label="Play or pause South African background music" title="South African groove — play / pause">
     <svg class="m-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M9 18V5l10-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>
     </svg>
@@ -1765,10 +1768,25 @@ html{scroll-padding-top:96px}
   } else {
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
-        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        if (en.isIntersecting || en.boundingClientRect.top < window.innerHeight) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
     }, {threshold:.14, rootMargin:'0px 0px -7% 0px'});
     els.forEach(function(el){ io.observe(el); });
+    // Fallback: jump-scrolling (End/Home, anchors, fast flicks) can skip past
+    // elements without the IO ever firing for them — reveal anything at/above the fold.
+    var revealTick = false;
+    function revealPast() {
+      revealTick = false;
+      var vh = window.innerHeight;
+      var pending = document.querySelectorAll('.reveal:not(.in)');
+      for (var i = 0; i < pending.length; i++) {
+        var el = pending[i];
+        if (el.getBoundingClientRect().top < vh) { el.classList.add('in'); io.unobserve(el); }
+      }
+    }
+    window.addEventListener('scroll', function(){
+      if (!revealTick) { revealTick = true; requestAnimationFrame(revealPast); }
+    }, {passive:true});
   }
 
   // Active nav link highlight
