@@ -279,20 +279,20 @@ section{position:relative;scroll-margin-top:72px}
   position:relative;
 }
 .phone-screen{background:#0F0C08;border-radius:24px;overflow:hidden;border:1px solid rgba(200,155,60,.2)}
-.app{padding:16px 14px 12px}
-.app-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.app{padding:13px 14px 10px}
+.app-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
 .app-brand{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:600;font-size:.95rem;color:var(--bone)}
 .app-brand::before{content:"";width:9px;height:9px;background:var(--gold);transform:rotate(45deg)}
 .app-pts{font-size:.66rem;font-weight:800;letter-spacing:.08em;background:rgba(200,155,60,.14);color:var(--gold2);border:1px solid rgba(200,155,60,.35);padding:.35em .75em;border-radius:999px}
-.app-tabs{display:flex;gap:6px;margin-bottom:14px}
+.app-tabs{display:flex;gap:6px;margin-bottom:11px}
 .app-tabs span{font-size:.68rem;font-weight:700;letter-spacing:.06em;color:rgba(243,236,220,.45);padding:.4em .85em;border-radius:999px;border:1px solid transparent}
 .app-tabs span.on{color:var(--gold2);border-color:rgba(200,155,60,.4);background:rgba(200,155,60,.1)}
-.post{background:#17120B;border:1px solid rgba(200,155,60,.16);border-radius:14px;padding:14px;margin-bottom:12px}
-.post-tag{font-size:.6rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.post{background:#18130B;border:1px solid rgba(200,155,60,.14);border-radius:14px;padding:12px 13px;margin-bottom:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
+.post-tag{font-size:.6rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
 .post-title{font-family:var(--serif);font-weight:600;font-size:1.02rem;color:var(--bone);line-height:1.2}
-.post-text{font-size:.72rem;color:rgba(243,236,220,.6);margin-top:6px;line-height:1.5}
-.post-meta{display:flex;align-items:center;gap:10px;margin-top:12px}
-.avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--ember),var(--gold));color:var(--ink);font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
+.post-text{font-size:.72rem;color:rgba(243,236,220,.6);margin-top:4px;line-height:1.48}
+.post-meta{display:flex;align-items:center;gap:10px;margin-top:10px}
+.avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#33260F,#171109);border:1px solid rgba(200,155,60,.45);color:var(--gold2);font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
 .post-meta b{display:block;font-size:.72rem;color:var(--bone);line-height:1.2}
 .post-meta small{display:block;font-size:.6rem;color:rgba(243,236,220,.5)}
 .chip{margin-left:auto;font-size:.62rem;font-weight:800;color:#1B140B;background:var(--gold);padding:.35em .8em;border-radius:999px}
@@ -373,28 +373,29 @@ section{position:relative;scroll-margin-top:72px}
 .story-dot.active{background:#9A7327;border-color:#9A7327;transform:scale(1.15)}
 .story-phone{display:flex;flex-direction:column;align-items:center;gap:14px}
 .story-phone .phone{width:min(308px,100%);margin:0}
-.story-phone .phone-screen{position:relative;height:560px}
+.story-phone .phone-screen{position:relative;height:578px}
 .screen{
   position:absolute;inset:0;opacity:0;transform:translateY(16px) scale(.985);
   transition:opacity .5s ease,transform .5s ease;pointer-events:none;overflow:hidden;
 }
 .screen.active{opacity:1;transform:none;pointer-events:auto}
-.screen .app{height:100%;overflow-y:auto;scrollbar-width:none}
+.screen .app{height:100%;overflow-y:auto;scrollbar-width:none;position:relative}
 .screen .app::-webkit-scrollbar{display:none}
 .mod-card{
   display:flex;gap:10px;align-items:center;
   background:rgba(200,155,60,.12);border:1px dashed rgba(200,155,60,.5);border-radius:12px;
-  padding:10px 12px;margin-bottom:12px;
+  padding:9px 12px;margin-bottom:10px;
 }
 .mod-ic{
-  flex:none;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#14100A;
-  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;
+  flex:none;width:26px;height:26px;border-radius:50%;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
 }
+.mod-ic::before{content:"";width:9px;height:9px;background:#14100A;transform:rotate(45deg);border-radius:1px}
 .mod-card b{display:block;font-size:.74rem;color:var(--gold2)}
 .mod-card small{font-size:.62rem;color:rgba(243,236,220,.6)}
 .disc-card{
   display:flex;gap:10px;align-items:center;background:rgba(200,155,60,.1);
-  border:1px solid rgba(200,155,60,.35);border-radius:12px;padding:10px 12px;margin-bottom:12px;
+  border:1px solid rgba(200,155,60,.35);border-radius:12px;padding:9px 12px;margin-bottom:10px;
 }
 .disc-card .avatar{width:34px;height:34px}
 .disc-card b{display:block;font-size:.74rem;color:var(--bone)}
@@ -436,6 +437,30 @@ section{position:relative;scroll-margin-top:72px}
 }
 @media (max-width:560px){
   .story-texts{min-height:300px}
+
+@media (max-width:560px){
+  .story-phone .phone-screen{height:430px}
+  .screen .app{padding:12px 12px 8px}
+  .screen .app-top{margin-bottom:9px}
+  .screen .app-tabs{margin-bottom:9px}
+  .screen .app-tabs span{font-size:.62rem;padding:.35em .7em}
+  .screen .post{padding:10px 11px;margin-bottom:8px}
+  .screen .post-tag{font-size:.54rem;margin-bottom:5px}
+  .screen .post-title{font-size:.92rem}
+  .screen .post-text{font-size:.66rem;margin-top:3px}
+  .screen .post-meta{margin-top:8px;gap:8px}
+  .screen .mod-card,.screen .disc-card{padding:8px 10px;margin-bottom:8px}
+  .screen .mod-card small,.screen .disc-card small{font-size:.56rem}
+  .screen .avatar{width:24px;height:24px;font-size:.54rem}
+  .screen .chatmini .msg{font-size:.66rem;padding:7px 9px}
+
+  .screen .app{scrollbar-width:thin;scrollbar-color:rgba(200,155,60,.35) transparent}
+  .screen .app::-webkit-scrollbar{display:block;width:4px}
+  .screen .app::-webkit-scrollbar-thumb{background:rgba(200,155,60,.35);border-radius:2px}
+  .screen .app::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(180deg,transparent,#0F0C08 92%);pointer-events:none}
+  .screen .cst-hero{padding:12px}
+}
+
   .story-phone .phone-screen{height:430px}
   .scene-meta{display:none}
   .story-left{align-items:flex-start}
@@ -1368,20 +1393,20 @@ html{scroll-padding-top:96px}
                       </div>
                       <div class="app-tabs"><span class="on">For You</span><span>Decades</span><span>Topics</span></div>
                       <div class="mod-card">
-                        <span class="mod-ic">✓</span>
-                        <div><b>Moderated by AI</b><small>Classified · Decade: 1980s · Topic: Music · Safe</small></div>
-                      </div>
-                      <div class="post">
-                        <div class="post-tag">Rite of passage · 1990s · Eastern Cape</div>
-                        <div class="post-title">Ulwaluko season, 1990s</div>
-                        <div class="post-text">A first-hand account of initiation season — customs, protocol, and the elders who hold the knowledge.</div>
-                        <div class="post-meta"><span class="avatar">NM</span><div><b>Nomsa M.</b><small>Peer-reviewed · 4.9 ★</small></div><span class="chip">Follow</span></div>
+                        <span class="mod-ic"></span>
+                        <div><b>Cleared for the 1980s · Music board</b><small>AI review · sensitivity-checked</small></div>
                       </div>
                       <div class="post">
                         <div class="post-tag">Music · 1980s · Soweto</div>
-                        <div class="post-title">The year mbaqanga crossed borders</div>
-                        <div class="post-text">How a township sound travelled the world — and what changed when it came home.</div>
-                        <div class="post-meta"><span class="avatar">TK</span><div><b>Thabo K.</b><small>Verified · 4.7 ★</small></div><span class="chip">Follow</span></div>
+                        <div class="post-title">When mbaqanga crossed the border</div>
+                        <div class="post-text">The Mahotella Queens take township jazz abroad — and bring a new audience home.</div>
+                        <div class="post-meta"><span class="avatar">MK</span><div><b>Miriam's archive</b><small>On the 1980s music board</small></div></div>
+                      </div>
+                      <div class="post">
+                        <div class="post-tag">Language · isiZulu</div>
+                        <div class="post-title">Isithunzi — a word with weight</div>
+                        <div class="post-text">Why dignity and presence share one word — and how it shapes a greeting, a handshake.</div>
+                        <div class="post-meta"><span class="avatar">NM</span><div><b>Nompumelelo M.</b><small>From the language board</small></div></div>
                       </div>
                     </div>
                   </div>
@@ -1394,19 +1419,19 @@ html{scroll-padding-top:96px}
                       <div class="app-tabs"><span class="on">For You</span><span>Decades</span><span>Topics</span></div>
                       <div class="disc-card">
                         <span class="avatar">TK</span>
-                        <div><b>Because you follow Thabo K.</b><small>+ music from the 1980s</small></div>
+                        <div><b>Matches your saved topic</b><small>amapiano · 2010s · Gauteng</small></div>
                       </div>
                       <div class="post">
                         <div class="post-tag">Your topic · Amapiano · 2010s</div>
                         <div class="post-title">Gauteng's log-drum revolution</div>
-                        <div class="post-text">Recommended because you read "The year mbaqanga crossed borders".</div>
-                        <div class="post-meta"><span class="avatar">LP</span><div><b>Lerato P.</b><small>Peer-reviewed · 4.8 ★</small></div><span class="chip">Save</span></div>
+                        <div class="post-text">Why the log drum carried the 2010s — and the township sound behind a generation.</div>
+                        <div class="post-meta"><span class="avatar">LP</span><div><b>Lerato P.</b><small>Suggested for you</small></div></div>
                       </div>
                       <div class="post">
                         <div class="post-tag">Your topic · Cape heritage</div>
                         <div class="post-title">Kaapse Klopse, explained</div>
-                        <div class="post-text">A guide to the Cape Minstrel carnival — matched to your saved topics.</div>
-                        <div class="post-meta"><span class="avatar">AB</span><div><b>Ammaarah B.</b><small>Peer-reviewed · 4.9 ★</small></div><span class="chip">Save</span></div>
+                        <div class="post-text">The Cape Minstrel carnival in ten lines — music, uniforms, and the city's oldest tradition.</div>
+                        <div class="post-meta"><span class="avatar">AB</span><div><b>Ammaarah B.</b><small>Suggested for you</small></div></div>
                       </div>
                     </div>
                   </div>
@@ -1417,10 +1442,10 @@ html{scroll-padding-top:96px}
                         <span class="app-pts">Online</span>
                       </div>
                       <div class="chatmini">
-                        <div class="msg user"><span class="who">You</span><span>What are the protocols for a traditional Zulu wedding?</span></div>
-                        <div class="msg agent"><span class="who">AI agent</span><span>Lobola negotiations come first, led by the elders — then the umembeso handover, and a wedding day of praise singing and dance. Grounded in our peer-reviewed base.</span></div>
-                        <div class="msg user"><span class="who">You</span><span>What about the 1980s?</span></div>
-                        <div class="typing-row"><span class="ai-badge">✦ AI agent</span><span>typing…</span></div>
+                        <div class="msg user"><span class="who">You</span><span>What happens at a Zulu wedding?</span></div>
+                        <div class="msg agent"><span class="who">AI agent</span><span>Lobola negotiations open it, led by the elders on both sides. Then umembeso — the bride-price handover at the groom's home — and on the day itself, praise singing and dance. The order is set by the families.</span></div>
+                        <div class="msg user"><span class="who">You</span><span>And in the 1980s?</span></div>
+                        <div class="typing-row"><span class="ai-badge">AI agent</span><span>typing…</span></div>
                       </div>
                     </div>
                   </div>
@@ -1433,14 +1458,14 @@ html{scroll-padding-top:96px}
                       <div class="cst-hero">
                         <span class="cst-hero-lab">CST balance</span>
                         <span class="cst-hero-val">1,240 <small>CST</small></span>
-                        <span class="cst-hero-toast">+25 · peer-reviewed</span>
+                        <span class="cst-hero-toast">+25 · review</span>
                       </div>
                       <div class="ledger">
-                        <div class="led-row"><span>+25</span><div><b>Post peer-reviewed</b><small>today · 14:02</small></div></div>
+                        <div class="led-row"><span>+25</span><div><b>Post cleared for a board</b><small>today · 14:02</small></div></div>
                         <div class="led-row"><span>+10</span><div><b>Answered a question</b><small>today · 11:37</small></div></div>
                         <div class="led-row"><span>+5</span><div><b>Daily visit</b><small>today · 08:01</small></div></div>
                       </div>
-                      <div class="cst-cta">Spend CST · Unlock verified badge</div>
+                      <div class="cst-cta">CST · earned by contributing, spent in-platform</div>
                     </div>
                   </div>
                 </div>
@@ -1461,7 +1486,7 @@ html{scroll-padding-top:96px}
           </span>
           <div>
             <h3>Meet the in-platform AI agent</h3>
-            <p>Ask about South African culture — answers are grounded in the peer-reviewed knowledge base.</p>
+            <p>Ask about South African culture — I answer from Culture Share's reviewed knowledge base.</p>
           </div>
         </div>
         <div class="cst-balance" aria-live="polite">
@@ -1472,11 +1497,11 @@ html{scroll-padding-top:96px}
       <div class="agent-body">
         <div class="chat" id="chat" role="log" aria-live="polite"></div>
         <div class="chips">
-          <button class="chip-q" data-q="What are the protocols for a traditional Zulu wedding?">Zulu wedding protocols</button>
+          <button class="chip-q" data-q="What are the protocols for a traditional Zulu wedding?">Zulu weddings</button>
           <button class="chip-q" data-q="Tell me about ulwaluko and initiation season.">Ulwaluko &amp; initiation</button>
-          <button class="chip-q" data-q="What was mbaqanga in the 1980s?">Mbaqanga in the 80s</button>
+          <button class="chip-q" data-q="What was mbaqanga in the 1980s?">Mbaqanga in the 1980s</button>
           <button class="chip-q" data-q="What is amapiano?">What is amapiano?</button>
-          <button class="chip-q" data-q="How do CST points work?">How do CST points work?</button>
+          <button class="chip-q" data-q="How do CST points work?">How CST points work</button>
         </div>
         <form class="chat-form" id="chatForm">
           <input type="text" id="chatInput" placeholder="Ask about culture…" autocomplete="off" aria-label="Ask the Culture Share agent about South African culture">
@@ -1900,7 +1925,7 @@ html{scroll-padding-top:96px}
       <div class="bm-chips">
         <span><b>AI moderation</b>Decade- &amp; topic-based classification, sensitivity-tuned.</span>
         <span><b>Discovery</b>“For You” feed from a personalisation engine.</span>
-        <span><b>AI agent</b>In-platform, grounded in the peer-reviewed base.</span>
+        <span><b>AI agent</b>In-platform, answers from the reviewed knowledge base.</span>
         <span><b>CST economy</b>Closed-loop loyalty ledger, governance-grade.</span>
       </div>
     </section>
@@ -2167,17 +2192,17 @@ html{scroll-padding-top:96px}
 
   /* grounded demo knowledge base (keyword-matched, peer-review-flavoured) */
   var KB = [
-    { tag:'Zulu weddings', kw:['zulu','wedding','umembeso','lobola','bride','marriage'], a:"A traditional Zulu wedding (umembeso) moves through stages set by both families: lobola negotiations led by the elders, the umembeso handover hosted by the groom's family, then the wedding day of isiZulu praise singing and dancing. Protocol is decided by the elders — and indexed on Culture Share by decade and topic." },
-    { tag:'Rites of passage', kw:['ulwaluko','initiation','rite','passage','xhos'], a:"Ulwaluko is the Xhosa rite of passage from boyhood to manhood, practised in the Eastern Cape. The season follows strict customary law: seclusion in the bush, guidance from an ingcibi and ikhankatha, and a formal return ceremony. On Culture Share it's handled with deep cultural sensitivity — and covered by peers who live it." },
-    { tag:'Music history', kw:['mbaqanga','marabi','kwela','music','jazz','township','80s','1980'], a:"Mbaqanga — township jazz — drove the sound of 1960s–80s South Africa: a deep, bass-heavy groove born from marabi and kwela, carried worldwide by voices like the Mahotella Queens. On Culture Share, music is classified by decade and topic, so you can follow a sound through its history." },
-    { tag:'Amapiano', kw:['amapiano','piano','log drum','kwaito','house'], a:"Amapiano — 'the pianos' — fuses kwaito, house and jazz around its signature log-drum bass. Born in Gauteng's townships in the 2010s, it became the sound of a generation. You might notice a little of that groove on this very page." },
+    { tag:'Zulu weddings', kw:['zulu','wedding','umembeso','lobola','bride','marriage'], a:"The order is set by both families and their elders: lobola negotiations come first, then umembeso — the bride-price handover at the groom's home — and finally the wedding day of praise singing and dance. Culture Share indexes the details by decade and region, so you can see how it changed over time." },
+    { tag:'Rites of passage', kw:['ulwaluko','initiation','rite','passage','xhos'], a:"Ulwaluko is the Xhosa rite of passage from boyhood to manhood, practised in the Eastern Cape. The season follows customary law: seclusion in the bush, guidance from an ingcibi and an ikhankatha, and a formal return ceremony. On Culture Share it's documented by peers who have lived it, with care around what is not shared publicly." },
+    { tag:'Music history', kw:['mbaqanga','marabi','kwela','music','jazz','township','80s','1980'], a:"Mbaqanga — township jazz — carried the sound of 1960s–80s South Africa: a deep, bass-heavy groove born from marabi and kwela, taken worldwide by voices like the Mahotella Queens. Follow the sound through its decades on Culture Share." },
+    { tag:'Amapiano', kw:['amapiano','piano','log drum','kwaito','house'], a:"Amapiano — 'the pianos' — fuses kwaito, house and jazz around its signature log-drum bass. It was born in Gauteng's townships in the 2010s and became the sound of a generation. You might notice a little of that groove on this page." },
     { tag:'CST points', kw:['cst','points','loyalty','earn','reward','economy','ledger'], a:"CST is Culture Share's closed-loop loyalty ledger — built with financial-governance discipline, not a cryptocurrency. Earn CST when your posts are peer-reviewed or your knowledge helps others, and spend it on platform privileges. It's a closed-loop digital incentive system within the platform." },
-    { tag:'AI moderation', kw:['moderation','moderate','moderator','safe','safety','sensitive'], a:"Our AI moderation classifies content by decade and topic, tuned for culturally sensitive material. It's tuned for culturally sensitive material — flagging, triaging, and keeping the knowledge base respectful." },
-    { tag:'Discovery', kw:['for you','feed','discover','personal','recommend'], a:"The 'For You' feed runs on a personalisation engine that learns from your behaviour across the knowledge base — so every scroll brings you closer to the culture you care about." },
-    { tag:'About Culture Share', kw:['culture share','platform','sharers','seekers','who are you','what do you do','about the platform'], a:"Culture Share connects culture seekers with culture sharers — a peer-reviewed knowledge base of traditions, music, food and language, with an AI agent on top. Ask me about weddings, initiations, music decades, or how CST points work." },
-    { tag:'Greeting', kw:['hello','hi','hey','sawubona','howzit','hallo'], a:"Sawubona! I'm the Culture Share agent, running on a structured, peer-reviewed knowledge base rather than generic chat. Ask me about Zulu weddings, ulwaluko, mbaqanga, amapiano, or CST points." }
+    { tag:'AI moderation', kw:['moderation','moderate','moderator','safe','safety','sensitive'], a:"Content is classified by decade and topic, with extra care around sensitive material — flagging, triaging, and keeping the boards respectful." },
+    { tag:'Discovery', kw:['for you','feed','discover','personal','recommend'], a:"The 'For You' feed learns from what you read and save — so it surfaces the culture you care about, not a generic stream." },
+    { tag:'About Culture Share', kw:['culture share','platform','sharers','seekers','who are you','what do you do','about the platform'], a:"Culture Share connects culture seekers with culture sharers — a reviewed knowledge base of traditions, music, food and language, with an AI agent on top. Ask me about weddings, initiations, music decades, or how CST points work." },
+    { tag:'Greeting', kw:['hello','hi','hey','sawubona','howzit','hallo'], a:"Sawubona. I answer from Culture Share's reviewed knowledge base — weddings, initiations, music decades, language, and how CST points work." }
   ];
-  var FALLBACK = "Great question — my demo brain knows a few corners of the knowledge base. Try “Zulu wedding”, “ulwaluko”, “mbaqanga”, “amapiano”, or “CST points”. In the full product, I'm grounded in the peer-reviewed knowledge base.";
+  var FALLBACK = "Good question — my demo build covers a few corners of Culture Share's knowledge base. Try Zulu wedding, ulwaluko, mbaqanga, amapiano, or CST points — in the full product I'd answer from the whole reviewed base.";
 
   function esc(s){
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -2290,7 +2315,7 @@ html{scroll-padding-top:96px}
     })(chips[i]);
   }
   setTimeout(function(){
-    addMsg('agent', "Sawubona! 👋 I'm the Culture Share agent — ask me about Zulu weddings, ulwaluko, mbaqanga, amapiano, or how CST points work. Every exchange earns CST.");
+    addMsg('agent', "Sawubona. I'm the Culture Share agent — ask me about a Zulu wedding, ulwaluko, a decade of music, or how CST points work.");
   }, 700);
 })();
 </script>
@@ -2784,7 +2809,7 @@ html{scroll-padding-top:96px}
     if (entries.some(function(e){ return e.isIntersecting; })){
       done = true;
       setTimeout(function(){
-        type("Ask me anything below — or tap a suggested question. Every answer is grounded in the peer-reviewed knowledge base.");
+        type("Tap a question below, or ask your own — I answer from Culture Share's reviewed knowledge base, decade by decade.");
       }, 750);
       io.disconnect();
     }
