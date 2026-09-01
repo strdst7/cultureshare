@@ -947,6 +947,14 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
 
 /* Gold CTAs — keep focus ring visible on gold surfaces */
 .btn-gold:focus-visible,.nav-cta a:focus-visible{outline-color:var(--bone)}
+/* 3D hero gem — soft glow behind the wireframe */
+.hero3d-glow{position:absolute;top:50%;left:clamp(52%,58vw,62%);width:min(58vmin,520px);height:min(58vmin,520px);transform:translate(-50%,-50%);pointer-events:none;z-index:0;opacity:.9;
+  background:radial-gradient(circle at 50% 50%, rgba(200,155,60,.16), rgba(200,155,60,.05) 46%, transparent 70%);
+  filter:blur(4px)}
+@media (max-width:700px){
+  .hero3d-glow{left:56%;width:min(70vmin,340px);height:min(70vmin,340px);opacity:.55}
+}
+
 /* ==================== POLISH LAYER — global refinement pass ==================== */
 html{scroll-padding-top:96px}
 ::selection{background:var(--gold);color:var(--ink)}
@@ -1098,6 +1106,7 @@ html{scroll-padding-top:96px}
 <!-- ================= HERO ================= -->
 <section class="hero">
   <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero3d-glow" aria-hidden="true"></div>
   <svg class="hero-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
     <rect x="8.7" y="8.7" width="46.6" height="46.6" transform="rotate(45 32 32)" stroke="currentColor" stroke-width="2"/>
     <path d="M29 51 h6 v-5 h-6 v-4 h4 v-5 h-4 v-4 h2 v-6" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor"/>
@@ -1838,90 +1847,200 @@ html{scroll-padding-top:96px}
   setTimeout(finish, 2050);
 })();
 
-/* ============ WOW: AUDIO-REACTIVE HERO — gold diamonds dance to the SA groove ============ */
+
+
+/* ============ WOW: 3D HERO — rotating gold gem wireframe (WebGL · zero-dep) ============ */
 (function(){
   var canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce){ canvas.remove(); return; }
+  var gl = canvas.getContext('webgl', {alpha:true, antialias:true, premultipliedAlpha:false});
+  if (!gl) { canvas.remove(); return; }
 
-  var ctx = canvas.getContext('2d');
-  var W = 0, H = 0, DPR = 1;
+  /* ---------- shaders ---------- */
+  function shader(type, src){
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) return null;
+    return s;
+  }
+  function program(vs, fs){
+    var p = gl.createProgram();
+    gl.attachShader(p, shader(gl.VERTEX_SHADER, vs));
+    gl.attachShader(p, shader(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(p);
+    return gl.getProgramParameter(p, gl.LINK_STATUS) ? p : null;
+  }
+  var VHEAD =
+    'attribute vec3 aPos;attribute float aDim;' +
+    'uniform mat4 uProj;uniform mat4 uModel;' +
+    'varying float vDim;' +
+    'void main(){vec4 p=uModel*vec4(aPos,1.0);gl_Position=uProj*p;vDim=aDim;}';
+  var FHEAD = 'precision mediump float;uniform vec3 uCol;uniform float uAlpha;varying float vDim;';
+  var lineProg = program(VHEAD, FHEAD + 'void main(){gl_FragColor=vec4(uCol,uAlpha*vDim);}');
+  var ptProg = program(
+    'attribute vec3 aPos;attribute float aDim;attribute float aSize;' +
+    'uniform mat4 uProj;uniform mat4 uModel;uniform float uPx;' +
+    'varying float vDim;' +
+    'void main(){vec4 p=uModel*vec4(aPos,1.0);gl_Position=uProj*p;gl_PointSize=aSize*uPx;vDim=aDim;}',
+    FHEAD + 'void main(){float d=length(gl_PointCoord-vec2(.5));if(d>.5)discard;gl_FragColor=vec4(uCol,uAlpha*vDim*(1.0-d*1.7));}'
+  );
+  if (!lineProg || !ptProg) return;
+
+  /* ---------- geometry: nested octahedra (gem + inner lattice) ---------- */
+  var SCALE = 1.3;
+  var OV = [
+    [1.0,0,0],[-1.0,0,0],[0,1.18,0],[0,-1.18,0],[0,0,1.0],[0,0,-1.0]
+  ];
+  function edges(vs){
+    var pos=[], dim=[];
+    for (var i=0;i<vs.length;i++) for (var j=i+1;j<vs.length;j++){
+      var v=vs[i], w=vs[j];
+      if (v[0]*w[0]+v[1]*w[1]+v[2]*w[2] > -0.999){
+        pos.push(v[0]*SCALE,v[1]*SCALE,v[2]*SCALE, w[0]*SCALE,w[1]*SCALE,w[2]*SCALE);
+        dim.push(1,1);
+      }
+    }
+    return {pos:pos, dim:dim};
+  }
+  var outer = edges(OV);
+  var c45 = Math.SQRT1_2;
+  var innerV = OV.map(function(v){
+    var x=v[0]*0.55, y=v[1]*0.55, z=v[2]*0.55;
+    return [x*c45+z*c45, y, -x*c45+z*c45];
+  });
+  var inner = edges(innerV);
+  var lineVerts = outer.pos.concat(inner.pos);
+  var lineDims  = outer.dim.concat(inner.dim.map(function(){ return 0.42; }));
+  var LINE_N = lineVerts.length / 3;
+
+  /* ---------- dust ---------- */
+  var NP = window.innerWidth < 700 ? 70 : 110;
+  var dustPos=[], dustDim=[], dustSize=[];
+  for (var i=0;i<NP;i++){
+    var r = 1.6 + Math.random()*1.9;
+    var th = Math.random()*Math.PI*2, ph = Math.acos(2*Math.random()-1);
+    dustPos.push(r*Math.sin(ph)*Math.cos(th), r*Math.sin(ph)*Math.sin(th), r*Math.cos(ph));
+    dustDim.push(0.16 + Math.random()*0.5);
+    dustSize.push(1.1 + Math.random()*1.7);
+  }
+
+  /* ---------- buffers ---------- */
+  function buf(arr){
+    var b = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(arr), gl.STATIC_DRAW);
+    return b;
+  }
+  var linePosB = buf(lineVerts), lineDimB = buf(lineDims);
+  var dustPosB = buf(dustPos), dustDimB = buf(dustDim), dustSizeB = buf(dustSize);
+
+  /* ---------- matrices (column-major) ---------- */
+  function m4rotX(a){ var c=Math.cos(a),s=Math.sin(a); return [1,0,0,0, 0,c,s,0, 0,-s,c,0, 0,0,0,1]; }
+  function m4rotY(a){ var c=Math.cos(a),s=Math.sin(a); return [c,0,-s,0, 0,1,0,0, s,0,c,0, 0,0,0,1]; }
+  function m4mul(a,b){
+    var o=new Array(16);
+    for (var c=0;c<4;c++) for (var r=0;r<4;r++){
+      var sum=0;
+      for (var k=0;k<4;k++) sum += a[k*4+r]*b[c*4+k];
+      o[c*4+r]=sum;
+    }
+    return o;
+  }
+  function m4persp(fov,aspect,near,far){
+    var f=1/Math.tan(fov/2), nf=1/(near-far);
+    return [f/aspect,0,0,0, 0,f,0,0, 0,0,(far+near)*nf,-1, 0,0,2*far*near*nf,0];
+  }
+
+  /* ---------- state ---------- */
+  var DPR=1, proj=m4persp(0.82,1,0.1,100);
+  gl.clearColor(0,0,0,0);
+  gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+
   function resize(){
-    DPR = Math.min(window.devicePixelRatio || 1, 2);
-    W = canvas.clientWidth; H = canvas.clientHeight;
-    canvas.width = W * DPR; canvas.height = H * DPR;
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    var w = canvas.clientWidth || window.innerWidth;
+    var h = canvas.clientHeight || window.innerHeight;
+    if (!w || !h) return;
+    DPR = Math.min(window.devicePixelRatio || 1, 1.75);
+    canvas.width = Math.round(w*DPR);
+    canvas.height = Math.round(h*DPR);
+    gl.viewport(0,0,canvas.width,canvas.height);
+    proj = m4persp(0.82, w/h, 0.1, 100);
   }
   window.addEventListener('resize', resize);
   resize();
 
-  var COLS = ['200,155,60','229,194,118','194,105,44'];   // gold / light gold / ember
-  var N = window.innerWidth < 700 ? 55 : 90;
-  var parts = [];
-  for (var i = 0; i < N; i++){
-    parts.push({
-      x: Math.random(), y: Math.random(),
-      vx: (Math.random() - 0.5) * 0.10,
-      vy: (Math.random() - 0.5) * 0.10 - 0.02,
-      s: 1.6 + Math.random() * 4.6,
-      r: Math.random() * Math.PI,
-      vr: (Math.random() - 0.5) * 0.022,
-      ph: Math.random() * Math.PI * 2,
-      c: COLS[i % COLS.length]
-    });
+  /* ---------- parallax ---------- */
+  var tx=0, ty=0, px=0, py=0;
+  window.addEventListener('pointermove', function(e){
+    tx = (e.clientX / window.innerWidth) * 2 - 1;
+    ty = (e.clientY / window.innerHeight) * 2 - 1;
+  }, {passive:true});
+
+  /* ---------- draw ---------- */
+  var mobile = window.innerWidth < 700;
+  var GX = mobile ? 1.15 : 1.62;
+  var GA = mobile ? 0.5 : 0.85;
+
+  function drawLines(model){
+    gl.useProgram(lineProg);
+    gl.uniformMatrix4fv(gl.getUniformLocation(lineProg,'uProj'), false, proj);
+    gl.uniformMatrix4fv(gl.getUniformLocation(lineProg,'uModel'), false, model);
+    gl.uniform3f(gl.getUniformLocation(lineProg,'uCol'), 0.93, 0.80, 0.50);
+    gl.uniform1f(gl.getUniformLocation(lineProg,'uAlpha'), GA);
+    var aPos=gl.getAttribLocation(lineProg,'aPos'), aDim=gl.getAttribLocation(lineProg,'aDim');
+    gl.bindBuffer(gl.ARRAY_BUFFER, linePosB); gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos,3,gl.FLOAT,false,0,0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, lineDimB); gl.enableVertexAttribArray(aDim); gl.vertexAttribPointer(aDim,1,gl.FLOAT,false,0,0);
+    gl.drawArrays(gl.LINES, 0, LINE_N);
+  }
+  function drawDust(model){
+    gl.useProgram(ptProg);
+    gl.uniformMatrix4fv(gl.getUniformLocation(ptProg,'uProj'), false, proj);
+    gl.uniformMatrix4fv(gl.getUniformLocation(ptProg,'uModel'), false, model);
+    gl.uniform3f(gl.getUniformLocation(ptProg,'uCol'), 0.89, 0.74, 0.44);
+    gl.uniform1f(gl.getUniformLocation(ptProg,'uAlpha'), 0.8);
+    gl.uniform1f(gl.getUniformLocation(ptProg,'uPx'), DPR);
+    var aPos=gl.getAttribLocation(ptProg,'aPos'), aDim=gl.getAttribLocation(ptProg,'aDim'), aSize=gl.getAttribLocation(ptProg,'aSize');
+    gl.bindBuffer(gl.ARRAY_BUFFER, dustPosB); gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos,3,gl.FLOAT,false,0,0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, dustDimB); gl.enableVertexAttribArray(aDim); gl.vertexAttribPointer(aDim,1,gl.FLOAT,false,0,0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, dustSizeB); gl.enableVertexAttribArray(aSize); gl.vertexAttribPointer(aSize,1,gl.FLOAT,false,0,0);
+    gl.drawArrays(gl.POINTS, 0, NP);
+  }
+  function render(ax, ay){
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    var model = m4mul(m4rotX(ax), m4rotY(ay));
+    model[12] = GX; model[13] = 0.06; model[14] = -4.4;
+    drawLines(model);
+    drawDust(model);
   }
 
-  var t = 0, pulse = 0, raf = null, running = true;
-  function stop(){ running = false; if (raf){ cancelAnimationFrame(raf); raf = null; } }
-  function start(){ if (running) return; running = true; raf = requestAnimationFrame(frame); }
-  function frame(){
+  /* ---------- loop / reduced-motion / visibility ---------- */
+  var running = false, t0 = 0;
+  function frame(now){
     if (!running) return;
-    t += 0.016;
-    var lv = (window.__NSH_MUSIC && window.__NSH_MUSIC.getLevels) ? window.__NSH_MUSIC.getLevels() : null;
-    var energy = lv ? (lv[0] * 0.55 + lv[1] * 0.30 + lv[2] * 0.15) : 0.10;
-    if (lv && lv[0] > 0.62) pulse = 1;          // beat detection on the low band
-    pulse *= 0.93;
-
-    ctx.clearRect(0, 0, W, H);
-    var boost = 1 + energy * 2.4;
-    for (var i = 0; i < N; i++){
-      var p = parts[i];
-      p.x += (p.vx * boost + Math.sin(t * 0.55 + p.ph) * 0.0008);
-      p.y += (p.vy * boost + Math.cos(t * 0.48 + p.ph * 1.3) * 0.0006);
-      p.r += p.vr * (1 + energy * 1.4);
-      if (p.x < -0.06) p.x = 1.06; else if (p.x > 1.06) p.x = -0.06;
-      if (p.y < -0.06) p.y = 1.06; else if (p.y > 1.06) p.y = -0.06;
-
-      var tw = 0.4 + 0.3 * Math.sin(t * 1.3 + p.ph);
-      var a = Math.min(1, tw * (0.30 + energy * 2.4) * (1 + pulse * 0.6));
-      var sz = p.s * (1 + energy * 2.6) * (1 + pulse * 0.45);
-
-      ctx.save();
-      ctx.translate(p.x * W, p.y * H);
-      ctx.rotate(p.r);
-      ctx.globalAlpha = a;
-      ctx.fillStyle = 'rgba(' + p.c + ',1)';
-      ctx.beginPath();
-      ctx.moveTo(0, -sz); ctx.lineTo(sz, 0); ctx.lineTo(0, sz); ctx.lineTo(-sz, 0);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    }
-    raf = requestAnimationFrame(frame);
+    if (!t0) t0 = now;
+    var t = (now - t0) / 1000;
+    px += (tx - px) * 0.05;
+    py += (ty - py) * 0.05;
+    render(Math.sin(t*0.16)*0.14 + py*0.22, t*0.30 + px*0.42);
+    requestAnimationFrame(frame);
   }
-  start();
-  document.addEventListener('visibilitychange', function(){
-    if (document.hidden) stop(); else start();
-  });
-  /* pause the particle field when the hero leaves the viewport (perf) */
-  var heroSec = canvas.closest('.hero');
-  if (heroSec && 'IntersectionObserver' in window){
-    new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ if (en.isIntersecting) start(); else stop(); });
-    }, { rootMargin: '240px' }).observe(heroSec);
+  function start(){ if (running) return; running = true; t0 = 0; requestAnimationFrame(frame); }
+  function stop(){ running = false; }
+
+  if (reduce) {
+    render(0.18, 0.7);
+  } else if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(en){
+      en.forEach(function(e){ e.isIntersecting ? start() : stop(); });
+    }, {threshold:0.01}).observe(canvas);
+  } else {
+    start();
   }
 })();
+
 </script>
 
 
