@@ -22,7 +22,7 @@
 <link rel="icon" href="assets/favicon/favicon-16x16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="canonical" href="https://strdst7.github.io/ns-holdings/">
+<link rel="canonical" href="https://strdst7.github.io/cultureshare/">
 <style>
 /* ============ FONTS (embedded variable fonts) ============ */
 @font-face{
@@ -1070,6 +1070,9 @@ html{scroll-padding-top:96px}
 
 .cu-video{margin-top:clamp(28px,4vw,44px)}
 .cu-video-el{display:block;width:100%;height:auto;border-radius:16px;border:1px solid rgba(154,115,39,.3);box-shadow:0 30px 60px -40px rgba(11,9,6,.45);background:#0B0906}
+
+.multimedia{background:var(--ink);padding-block:var(--sec);border-top:1px solid var(--line)}
+.multimedia .cu-video{margin-top:clamp(30px,4.5vw,52px)}
 </style>
 <noscript><style>#intro{display:none!important}.reveal{opacity:1!important;transform:none!important}
 </style></noscript>
@@ -1101,6 +1104,7 @@ html{scroll-padding-top:96px}
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#culture-share">Culture Share</a>
+      <a href="#multimedia">Multimedia</a>
       <a href="#capability">Capability</a>
       <a href="#contact">Contact</a>
       <button type="button" class="board-btn" id="boardNavBtn" aria-label="Open board presentation mode"><span class="tri"></span>Board mode</button>
@@ -1114,8 +1118,9 @@ html{scroll-padding-top:96px}
 <!-- mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#culture-share"><small>01</small>Culture Share</a>
-  <a href="#capability"><small>02</small>Capability</a>
-  <a href="#contact"><small>03</small>Contact</a>
+  <a href="#multimedia"><small>02</small>Multimedia</a>
+  <a href="#capability"><small>03</small>Capability</a>
+  <a href="#contact"><small>04</small>Contact</a>
   <button type="button" class="m-cta" id="boardMobBtn" style="width:100%;text-align:left;border:none;background:none;padding:0;margin-top:18px;font:inherit;cursor:pointer"><a style="display:inline-block;background:transparent;color:var(--gold2);border:1px solid var(--line-strong);font-size:1rem;padding:15px 26px;border-radius:var(--r)">▶ Board presentation</a></button>
 </div>
 
@@ -1250,6 +1255,14 @@ html{scroll-padding-top:96px}
       <p class="cu-outro-t">Moderation, discovery, an in-platform agent, and a points ledger — one platform, built and deployed end to end by the Culture Share team.</p>
       <a class="cu-outro-link" href="#capability">The same stack, offered as a service <span aria-hidden="true">&rarr;</span></a>
     </div>
+  </div>
+</section>
+
+<!-- ================= MULTIMEDIA ================= -->
+<section class="multimedia" id="multimedia">
+  <div class="container">
+    <p class="label reveal">02 — Multimedia</p>
+    <h2 class="h2 reveal" style="--d:.06s">Culture Share, <em>on film.</em></h2>
     <div class="cu-video reveal" style="--d:.15s">
       <video class="cu-video-el" src="assets/video/culture-share.mp4" autoplay muted loop playsinline preload="auto" aria-label="Culture Share — film"></video>
     </div>
@@ -1323,7 +1336,7 @@ html{scroll-padding-top:96px}
   <div class="container">
     <div class="cap-head">
       <div>
-        <p class="label reveal">02 — Capability</p>
+        <p class="label reveal">03 — Capability</p>
         <h2 class="h2 reveal" style="--d:.06s">The same stack, <em>available as a service.</em></h2>
       </div>
       <p class="lead reveal" style="--d:.12s">Culture Share proved the capability end to end. That same capability is available to partners — custom AI systems, data infrastructure, and full-stack platforms built to production standard.</p>
@@ -1370,7 +1383,7 @@ html{scroll-padding-top:96px}
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-panel reveal">
-      <p class="label" style="justify-content:center">03 — Contact</p>
+      <p class="label" style="justify-content:center">04 — Contact</p>
       <h2 class="h2">Let's build what <em>comes next.</em></h2>
       <p class="lead">For partnership, investment, or technology inquiries — reach the Culture Share team directly.</p>
       <div class="contact-cta">
@@ -1409,6 +1422,7 @@ html{scroll-padding-top:96px}
         <h5>Explore</h5>
         <ul>
           <li><a href="#culture-share">Culture Share</a></li>
+          <li><a href="#multimedia">Multimedia</a></li>
           <li><a href="#capability">Capability</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
