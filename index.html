@@ -487,6 +487,27 @@ section{position:relative;scroll-margin-top:72px}
 }
 .map-legend i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);display:inline-block}
 .map-hint{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,236,220,.4);font-weight:700;text-align:center;margin-top:14px}
+/* Culture map — 3D tilt, live tour, pulse, animated chips */
+.map-panel{perspective:1400px}
+.map-3d{transform-style:preserve-3d;will-change:transform}
+.prov{transform-box:fill-box;transform-origin:center;transition:fill .35s ease,stroke .35s ease,filter .35s ease,transform .35s ease;cursor:pointer}
+.prov-g:hover .prov{transform:scale(1.045)}
+#saMap .prov-g.active .prov{transform:scale(1.06);filter:drop-shadow(0 0 16px rgba(200,155,60,.45))}
+.prov-pulse{opacity:0;fill:none;stroke:rgba(200,155,60,.95);stroke-width:2.4;transform-box:fill-box;transform-origin:center;pointer-events:none}
+.prov-pulse.on{animation:provPulse 2.4s cubic-bezier(.2,.7,.2,1) infinite}
+@keyframes provPulse{0%{transform:scale(.1);opacity:.85}65%{opacity:.3}100%{transform:scale(3.4);opacity:0}}
+.prov-chips span{animation:chipIn .4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes chipIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.prov-card h3,.prov-card .tag{transition:opacity .3s ease,transform .3s ease}
+.prov-card.refreshing h3,.prov-card.refreshing .tag{opacity:.15;transform:translateY(6px)}
+.map-status{display:flex;align-items:center;justify-content:center;gap:.55em;margin-top:16px;font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--sand)}
+.map-status .live-dot{width:8px;height:8px;border-radius:50%;background:var(--gold2);box-shadow:0 0 0 0 rgba(200,155,60,.5);animation:pulse 2.4s infinite;flex:none}
+@media (prefers-reduced-motion:reduce){
+  .prov-pulse,.prov-pulse.on{animation:none;opacity:0}
+  .prov-chips span{animation:none}
+  .prov-card h3,.prov-card .tag,.prov-card.refreshing h3,.prov-card.refreshing .tag{transition:none;opacity:1;transform:none}
+  .map-status .live-dot{animation:none}
+}
 .prov-card{
   position:relative;border:1px solid var(--line-strong);border-radius:16px;
   background:linear-gradient(160deg,var(--card),var(--ink));padding:clamp(26px,3vw,38px);
@@ -1308,14 +1329,18 @@ html{scroll-padding-top:96px}
 
     <div class="cmap-grid">
       <div class="map-panel reveal" style="--d:.1s">
-        <svg id="saMap" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 636" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Map of the nine provinces of South Africa"><g class="prov-g" data-prov="NC" data-name="Northern Cape"><path class="prov" d="M 305.2 206.4 L 287.0 219.7 L 281.2 228.8 L 260.8 241.8 L 219.2 241.5 L 214.0 222.4 L 222.7 209.2 L 221.7 197.4 L 201.1 155.5 L 184.4 143.5 L 184.4 247.5 L 184.4 317.3 L 170.3 319.8 L 140.7 339.8 L 107.9 337.9 L 68.3 329.0 L 65.5 312.7 L 50.4 297.4 L 36.6 317.3 L 24.0 326.3 L 45.5 362.3 L 63.7 411.6 L 83.1 444.9 L 94.7 427.2 L 105.0 427.6 L 119.3 412.8 L 136.7 424.8 L 135.1 438.3 L 142.8 473.2 L 161.1 488.9 L 161.8 507.2 L 189.1 504.6 L 194.9 521.3 L 204.6 529.5 L 217.6 528.6 L 225.0 517.2 L 256.5 496.6 L 270.2 496.7 L 281.6 487.9 L 290.4 464.8 L 304.8 474.6 L 324.0 479.8 L 341.2 470.1 L 354.9 469.4 L 375.4 475.2 L 391.6 471.2 L 394.3 456.9 L 403.7 456.3 L 434.9 442.4 L 435.9 419.6 L 423.0 412.1 L 404.6 390.0 L 384.3 374.0 L 408.7 326.7 L 415.1 299.2 L 400.4 287.7 L 392.5 300.7 L 373.8 283.8 L 369.8 249.4 L 345.5 236.2 L 335.2 224.0 L 327.4 200.7 L 309.2 220.8 L 305.2 206.4 Z"/></g><g class="prov-g" data-prov="WC" data-name="Western Cape"><path class="prov" d="M 351.9 579.2 L 348.7 555.9 L 334.8 551.3 L 311.4 551.4 L 322.9 527.2 L 339.8 521.5 L 334.0 505.2 L 372.8 491.1 L 375.4 475.2 L 354.9 469.4 L 341.2 470.1 L 324.0 479.8 L 304.8 474.6 L 290.4 464.8 L 281.6 487.9 L 270.2 496.7 L 256.5 496.6 L 225.0 517.2 L 217.6 528.6 L 204.6 529.5 L 194.9 521.3 L 189.1 504.6 L 161.8 507.2 L 161.1 488.9 L 142.8 473.2 L 135.1 438.3 L 136.7 424.8 L 119.3 412.8 L 105.0 427.6 L 94.7 427.2 L 83.1 444.9 L 101.1 468.8 L 107.9 490.9 L 105.1 516.0 L 86.8 524.3 L 88.1 530.6 L 113.5 566.4 L 109.9 576.9 L 130.7 584.9 L 168.6 615.4 L 186.3 616.9 L 209.6 601.7 L 233.9 597.0 L 267.3 597.4 L 288.2 583.0 L 302.4 580.2 L 335.1 583.6 L 351.9 579.2 Z"/></g><g class="prov-g" data-prov="NW" data-name="North West"><path class="prov" d="M 305.2 206.4 L 309.2 220.8 L 327.4 200.7 L 335.2 224.0 L 345.5 236.2 L 369.8 249.4 L 373.8 283.8 L 392.5 300.7 L 400.4 287.7 L 415.1 299.2 L 433.8 282.3 L 451.1 276.1 L 460.3 278.9 L 481.0 265.4 L 482.8 255.2 L 502.3 243.5 L 528.2 242.7 L 532.9 236.2 L 517.3 231.6 L 527.2 195.9 L 549.4 192.2 L 552.2 171.1 L 565.5 169.1 L 556.5 154.5 L 514.6 153.6 L 503.6 144.1 L 481.2 145.2 L 478.6 135.8 L 456.3 142.1 L 441.3 182.7 L 434.8 187.9 L 403.0 192.7 L 363.8 182.5 L 335.0 166.7 L 317.3 175.7 L 305.2 206.4 Z"/></g><g class="prov-g" data-prov="FS" data-name="Free State"><path class="prov" d="M 591.3 332.7 L 596.6 323.1 L 624.9 307.8 L 633.2 270.1 L 596.0 248.4 L 571.6 247.8 L 563.8 243.6 L 546.6 235.6 L 532.9 236.2 L 528.2 242.7 L 502.3 243.5 L 482.8 255.2 L 481.0 265.4 L 460.3 278.9 L 451.1 276.1 L 433.8 282.3 L 415.1 299.2 L 408.7 326.7 L 384.3 374.0 L 404.6 390.0 L 423.0 412.1 L 435.9 419.6 L 447.8 422.7 L 463.1 414.9 L 484.9 421.4 L 502.6 421.6 L 519.8 413.6 L 523.8 405.1 L 508.6 374.7 L 519.7 367.8 L 539.9 340.4 L 580.7 323.5 L 591.3 332.7 Z"/></g><g class="prov-g" data-prov="GT" data-name="Gauteng"><path class="prov" d="M 563.8 243.6 L 581.5 225.4 L 576.4 211.8 L 581.1 200.1 L 591.9 201.6 L 596.8 185.9 L 582.7 185.5 L 579.8 161.5 L 565.5 169.1 L 552.2 171.1 L 549.4 192.2 L 527.2 195.9 L 517.3 231.6 L 532.9 236.2 L 546.6 235.6 L 563.8 243.6 Z"/></g><g class="prov-g" data-prov="MP" data-name="Mpumalanga"><path class="prov" d="M 727.5 105.0 L 710.0 107.8 L 691.9 115.8 L 699.7 133.1 L 678.8 128.7 L 673.9 145.5 L 652.1 147.2 L 643.9 169.8 L 614.1 173.2 L 599.6 166.8 L 593.2 152.0 L 579.8 161.5 L 582.7 185.5 L 596.8 185.9 L 591.9 201.6 L 581.1 200.1 L 576.4 211.8 L 581.5 225.4 L 563.8 243.6 L 571.6 247.8 L 596.0 248.4 L 633.2 270.1 L 663.1 261.7 L 688.6 265.4 L 702.1 259.9 L 680.1 237.5 L 680.5 220.9 L 699.0 193.9 L 708.6 189.4 L 729.5 200.5 L 734.7 184.0 L 734.7 128.5 L 727.5 105.0 Z"/></g><g class="prov-g" data-prov="LIM" data-name="Limpopo"><path class="prov" d="M 727.5 105.0 L 714.6 82.3 L 713.9 72.7 L 702.7 31.2 L 692.9 26.7 L 664.8 27.7 L 628.3 19.1 L 603.8 22.2 L 590.5 34.9 L 561.7 45.0 L 547.0 63.0 L 512.9 84.3 L 505.6 92.8 L 498.6 118.1 L 478.6 135.8 L 481.2 145.2 L 503.6 144.1 L 514.6 153.6 L 556.5 154.5 L 565.5 169.1 L 579.8 161.5 L 593.2 152.0 L 599.6 166.8 L 614.1 173.2 L 643.9 169.8 L 652.1 147.2 L 673.9 145.5 L 678.8 128.7 L 699.7 133.1 L 691.9 115.8 L 710.0 107.8 L 727.5 105.0 Z"/></g><g class="prov-g" data-prov="KZN" data-name="KwaZulu-Natal"><path class="prov" d="M 702.1 259.9 L 688.6 265.4 L 663.1 261.7 L 633.2 270.1 L 624.9 307.8 L 596.6 323.1 L 591.3 332.7 L 611.7 347.5 L 615.8 356.0 L 611.3 370.1 L 598.5 389.4 L 605.9 404.1 L 605.3 416.8 L 634.3 424.1 L 652.6 441.4 L 690.6 385.9 L 704.9 361.1 L 725.2 340.3 L 748.5 325.4 L 759.9 305.4 L 765.5 277.4 L 776.0 241.5 L 735.1 240.0 L 733.5 263.1 L 702.1 259.9 Z"/></g><g class="prov-g" data-prov="EC" data-name="Eastern Cape"><path class="prov" d="M 598.5 389.4 L 570.0 397.5 L 552.9 420.9 L 540.7 418.9 L 523.8 405.1 L 519.8 413.6 L 502.6 421.6 L 484.9 421.4 L 463.1 414.9 L 447.8 422.7 L 435.9 419.6 L 434.9 442.4 L 403.7 456.3 L 394.3 456.9 L 391.6 471.2 L 375.4 475.2 L 372.8 491.1 L 334.0 505.2 L 339.8 521.5 L 322.9 527.2 L 311.4 551.4 L 334.8 551.3 L 348.7 555.9 L 351.9 579.2 L 406.6 587.7 L 414.6 578.5 L 443.8 580.3 L 444.4 572.6 L 459.9 566.1 L 480.0 568.4 L 509.7 557.1 L 545.6 535.0 L 591.3 499.1 L 603.7 485.3 L 652.6 441.4 L 634.3 424.1 L 605.3 416.8 L 605.9 404.1 L 598.5 389.4 Z"/></g><g class="plabels"><text class="plab" x="231.0" y="378.4" font-size="16">Northern Cape</text><text class="plab" x="230.0" y="556.3" font-size="15">Western Cape</text><text class="plab" x="448.4" y="220.3" font-size="13">North West</text><text class="plab" x="482.9" y="323.5" font-size="12">Free State</text><text class="plab code" x="561.5" y="209.3" font-size="14">GT</text><text class="plab" x="650.2" y="200.9" font-size="11">Mpumalanga</text><text class="plab" x="603.8" y="87.2" font-size="15">Limpopo</text><text class="plab" x="681.4" y="331.3" font-size="14">KwaZulu-Natal</text><text class="plab" x="489.8" y="488.1" font-size="15">Eastern Cape</text></g></svg>
+        <div class="map-3d" id="map3d">
+<svg id="saMap" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 636" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Map of the nine provinces of South Africa"><g class="prov-g" data-prov="NC" data-name="Northern Cape"><path class="prov" d="M 305.2 206.4 L 287.0 219.7 L 281.2 228.8 L 260.8 241.8 L 219.2 241.5 L 214.0 222.4 L 222.7 209.2 L 221.7 197.4 L 201.1 155.5 L 184.4 143.5 L 184.4 247.5 L 184.4 317.3 L 170.3 319.8 L 140.7 339.8 L 107.9 337.9 L 68.3 329.0 L 65.5 312.7 L 50.4 297.4 L 36.6 317.3 L 24.0 326.3 L 45.5 362.3 L 63.7 411.6 L 83.1 444.9 L 94.7 427.2 L 105.0 427.6 L 119.3 412.8 L 136.7 424.8 L 135.1 438.3 L 142.8 473.2 L 161.1 488.9 L 161.8 507.2 L 189.1 504.6 L 194.9 521.3 L 204.6 529.5 L 217.6 528.6 L 225.0 517.2 L 256.5 496.6 L 270.2 496.7 L 281.6 487.9 L 290.4 464.8 L 304.8 474.6 L 324.0 479.8 L 341.2 470.1 L 354.9 469.4 L 375.4 475.2 L 391.6 471.2 L 394.3 456.9 L 403.7 456.3 L 434.9 442.4 L 435.9 419.6 L 423.0 412.1 L 404.6 390.0 L 384.3 374.0 L 408.7 326.7 L 415.1 299.2 L 400.4 287.7 L 392.5 300.7 L 373.8 283.8 L 369.8 249.4 L 345.5 236.2 L 335.2 224.0 L 327.4 200.7 L 309.2 220.8 L 305.2 206.4 Z"/></g><g class="prov-g" data-prov="WC" data-name="Western Cape"><path class="prov" d="M 351.9 579.2 L 348.7 555.9 L 334.8 551.3 L 311.4 551.4 L 322.9 527.2 L 339.8 521.5 L 334.0 505.2 L 372.8 491.1 L 375.4 475.2 L 354.9 469.4 L 341.2 470.1 L 324.0 479.8 L 304.8 474.6 L 290.4 464.8 L 281.6 487.9 L 270.2 496.7 L 256.5 496.6 L 225.0 517.2 L 217.6 528.6 L 204.6 529.5 L 194.9 521.3 L 189.1 504.6 L 161.8 507.2 L 161.1 488.9 L 142.8 473.2 L 135.1 438.3 L 136.7 424.8 L 119.3 412.8 L 105.0 427.6 L 94.7 427.2 L 83.1 444.9 L 101.1 468.8 L 107.9 490.9 L 105.1 516.0 L 86.8 524.3 L 88.1 530.6 L 113.5 566.4 L 109.9 576.9 L 130.7 584.9 L 168.6 615.4 L 186.3 616.9 L 209.6 601.7 L 233.9 597.0 L 267.3 597.4 L 288.2 583.0 L 302.4 580.2 L 335.1 583.6 L 351.9 579.2 Z"/></g><g class="prov-g" data-prov="NW" data-name="North West"><path class="prov" d="M 305.2 206.4 L 309.2 220.8 L 327.4 200.7 L 335.2 224.0 L 345.5 236.2 L 369.8 249.4 L 373.8 283.8 L 392.5 300.7 L 400.4 287.7 L 415.1 299.2 L 433.8 282.3 L 451.1 276.1 L 460.3 278.9 L 481.0 265.4 L 482.8 255.2 L 502.3 243.5 L 528.2 242.7 L 532.9 236.2 L 517.3 231.6 L 527.2 195.9 L 549.4 192.2 L 552.2 171.1 L 565.5 169.1 L 556.5 154.5 L 514.6 153.6 L 503.6 144.1 L 481.2 145.2 L 478.6 135.8 L 456.3 142.1 L 441.3 182.7 L 434.8 187.9 L 403.0 192.7 L 363.8 182.5 L 335.0 166.7 L 317.3 175.7 L 305.2 206.4 Z"/></g><g class="prov-g" data-prov="FS" data-name="Free State"><path class="prov" d="M 591.3 332.7 L 596.6 323.1 L 624.9 307.8 L 633.2 270.1 L 596.0 248.4 L 571.6 247.8 L 563.8 243.6 L 546.6 235.6 L 532.9 236.2 L 528.2 242.7 L 502.3 243.5 L 482.8 255.2 L 481.0 265.4 L 460.3 278.9 L 451.1 276.1 L 433.8 282.3 L 415.1 299.2 L 408.7 326.7 L 384.3 374.0 L 404.6 390.0 L 423.0 412.1 L 435.9 419.6 L 447.8 422.7 L 463.1 414.9 L 484.9 421.4 L 502.6 421.6 L 519.8 413.6 L 523.8 405.1 L 508.6 374.7 L 519.7 367.8 L 539.9 340.4 L 580.7 323.5 L 591.3 332.7 Z"/></g><g class="prov-g" data-prov="GT" data-name="Gauteng"><path class="prov" d="M 563.8 243.6 L 581.5 225.4 L 576.4 211.8 L 581.1 200.1 L 591.9 201.6 L 596.8 185.9 L 582.7 185.5 L 579.8 161.5 L 565.5 169.1 L 552.2 171.1 L 549.4 192.2 L 527.2 195.9 L 517.3 231.6 L 532.9 236.2 L 546.6 235.6 L 563.8 243.6 Z"/></g><g class="prov-g" data-prov="MP" data-name="Mpumalanga"><path class="prov" d="M 727.5 105.0 L 710.0 107.8 L 691.9 115.8 L 699.7 133.1 L 678.8 128.7 L 673.9 145.5 L 652.1 147.2 L 643.9 169.8 L 614.1 173.2 L 599.6 166.8 L 593.2 152.0 L 579.8 161.5 L 582.7 185.5 L 596.8 185.9 L 591.9 201.6 L 581.1 200.1 L 576.4 211.8 L 581.5 225.4 L 563.8 243.6 L 571.6 247.8 L 596.0 248.4 L 633.2 270.1 L 663.1 261.7 L 688.6 265.4 L 702.1 259.9 L 680.1 237.5 L 680.5 220.9 L 699.0 193.9 L 708.6 189.4 L 729.5 200.5 L 734.7 184.0 L 734.7 128.5 L 727.5 105.0 Z"/></g><g class="prov-g" data-prov="LIM" data-name="Limpopo"><path class="prov" d="M 727.5 105.0 L 714.6 82.3 L 713.9 72.7 L 702.7 31.2 L 692.9 26.7 L 664.8 27.7 L 628.3 19.1 L 603.8 22.2 L 590.5 34.9 L 561.7 45.0 L 547.0 63.0 L 512.9 84.3 L 505.6 92.8 L 498.6 118.1 L 478.6 135.8 L 481.2 145.2 L 503.6 144.1 L 514.6 153.6 L 556.5 154.5 L 565.5 169.1 L 579.8 161.5 L 593.2 152.0 L 599.6 166.8 L 614.1 173.2 L 643.9 169.8 L 652.1 147.2 L 673.9 145.5 L 678.8 128.7 L 699.7 133.1 L 691.9 115.8 L 710.0 107.8 L 727.5 105.0 Z"/></g><g class="prov-g" data-prov="KZN" data-name="KwaZulu-Natal"><path class="prov" d="M 702.1 259.9 L 688.6 265.4 L 663.1 261.7 L 633.2 270.1 L 624.9 307.8 L 596.6 323.1 L 591.3 332.7 L 611.7 347.5 L 615.8 356.0 L 611.3 370.1 L 598.5 389.4 L 605.9 404.1 L 605.3 416.8 L 634.3 424.1 L 652.6 441.4 L 690.6 385.9 L 704.9 361.1 L 725.2 340.3 L 748.5 325.4 L 759.9 305.4 L 765.5 277.4 L 776.0 241.5 L 735.1 240.0 L 733.5 263.1 L 702.1 259.9 Z"/></g><g class="prov-g" data-prov="EC" data-name="Eastern Cape"><path class="prov" d="M 598.5 389.4 L 570.0 397.5 L 552.9 420.9 L 540.7 418.9 L 523.8 405.1 L 519.8 413.6 L 502.6 421.6 L 484.9 421.4 L 463.1 414.9 L 447.8 422.7 L 435.9 419.6 L 434.9 442.4 L 403.7 456.3 L 394.3 456.9 L 391.6 471.2 L 375.4 475.2 L 372.8 491.1 L 334.0 505.2 L 339.8 521.5 L 322.9 527.2 L 311.4 551.4 L 334.8 551.3 L 348.7 555.9 L 351.9 579.2 L 406.6 587.7 L 414.6 578.5 L 443.8 580.3 L 444.4 572.6 L 459.9 566.1 L 480.0 568.4 L 509.7 557.1 L 545.6 535.0 L 591.3 499.1 L 603.7 485.3 L 652.6 441.4 L 634.3 424.1 L 605.3 416.8 L 605.9 404.1 L 598.5 389.4 Z"/></g><g class="plabels"><text class="plab" x="231.0" y="378.4" font-size="16">Northern Cape</text><text class="plab" x="230.0" y="556.3" font-size="15">Western Cape</text><text class="plab" x="448.4" y="220.3" font-size="13">North West</text><text class="plab" x="482.9" y="323.5" font-size="12">Free State</text><text class="plab code" x="561.5" y="209.3" font-size="14">GT</text><text class="plab" x="650.2" y="200.9" font-size="11">Mpumalanga</text><text class="plab" x="603.8" y="87.2" font-size="15">Limpopo</text><text class="plab" x="681.4" y="331.3" font-size="14">KwaZulu-Natal</text><text class="plab" x="489.8" y="488.1" font-size="15">Eastern Cape</text></g><circle class="prov-pulse" id="provPulse" cx="0" cy="0" r="0" fill="none" stroke="rgba(200,155,60,.95)" stroke-width="2.4" opacity="0"/>
+        </svg>
+        </div>
+        <div class="map-status" aria-live="polite"><span class="live-dot" aria-hidden="true"></span><span id="mapStatus">Live tour — Gauteng</span></div>
         <div class="map-legend" aria-hidden="true">
           <span><i></i> Languages</span>
           <span><i></i> Traditions &amp; rites</span>
           <span><i></i> Music &amp; decades</span>
           <span><i></i> Peer-reviewed</span>
         </div>
-        <p class="map-hint">Hover a province · click to pin · tap on touch</p>
+        <p class="map-hint">Move to tilt · hover a province · click to pin · tap on touch</p>
       </div>
 
       <div class="prov-card reveal" style="--d:.16s" id="provCard">
@@ -2133,9 +2158,36 @@ html{scroll-padding-top:96px}
   var $trad = document.getElementById('pcTrad');
   var $music = document.getElementById('pcMusic');
 
-  function chips(el, arr){ el.innerHTML = arr.map(function(s){ return '<span>' + s + '</span>'; }).join(''); }
+  function chips(el, arr){ el.innerHTML = arr.map(function(s,i){ return '<span style="animation-delay:' + (i*45) + 'ms">' + s + '</span>'; }).join(''); }
 
   var current = null, pinned = null;
+  var statusEl = document.getElementById('mapStatus');
+  var pulse = document.getElementById('provPulse');
+  var TOUR = ['GT','KZN','WC','EC','NC','FS','LIM','MP','NW'];
+  var tourIdx = TOUR.indexOf('GT');
+  var tourTimer = null, pauseUntil = 0, tourPaused = false, reduceM = false;
+  try { reduceM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  function setStatus(){
+    if (!statusEl) return;
+    statusEl.textContent = tourPaused ? 'Tour paused — you are exploring' : 'Live tour — ' + D[current].name;
+  }
+  function scheduleTour(){
+    if (reduceM) return;
+    clearTimeout(tourTimer);
+    var wait = (Date.now() < pauseUntil) ? Math.max(1200, pauseUntil - Date.now()) : 6000;
+    tourTimer = setTimeout(tourNext, wait);
+  }
+  function tourNext(){
+    if (Date.now() < pauseUntil){ scheduleTour(); return; }
+    tourPaused = false;
+    tourIdx = (tourIdx + 1) % TOUR.length;
+    activate(TOUR[tourIdx]);
+    scheduleTour();
+  }
+  function userTookOver(){
+    pauseUntil = Date.now() + 15000; tourPaused = true;
+    setStatus(); scheduleTour();
+  }
   function activate(gid){
     var d = D[gid]; if (!d || gid === current) return;
     current = gid;
@@ -2145,22 +2197,63 @@ html{scroll-padding-top:96px}
     chips($lang, d.lang); chips($trad, d.trad); chips($music, d.music);
     groups.forEach(function(g){ g.classList.toggle('active', g.getAttribute('data-prov') === gid); });
     document.querySelectorAll('.picker-chip').forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-p') === gid); });
+    if (pulse){
+      var pg = document.querySelector('#saMap .prov-g[data-prov="' + gid + '"] .prov');
+      if (pg){ var bb = pg.getBBox(); pulse.setAttribute('cx', bb.x + bb.width/2); pulse.setAttribute('cy', bb.y + bb.height/2); }
+      pulse.classList.remove('on'); void pulse.getBoundingClientRect(); pulse.classList.add('on');
+    }
+    card.classList.add('refreshing');
+    setTimeout(function(){ card.classList.remove('refreshing'); }, 280);
+    setStatus();
   }
 
   /* hover previews, click pins, picker selects */
   groups.forEach(function(g){
-    g.addEventListener('mouseenter', function(){ if (!pinned) activate(g.getAttribute('data-prov')); });
+    g.addEventListener('mouseenter', function(){ if (!pinned) activate(g.getAttribute('data-prov')); userTookOver(); });
     g.addEventListener('click', function(){
       var gid = g.getAttribute('data-prov');
       pinned = (pinned === gid) ? null : gid;      // click again to unpin
-      activate(gid);
+      activate(gid); userTookOver();
     });
   });
   document.querySelectorAll('.picker-chip').forEach(function(c){
-    c.addEventListener('click', function(){ pinned = c.getAttribute('data-p'); activate(pinned); });
+    c.addEventListener('click', function(){ pinned = c.getAttribute('data-p'); activate(pinned); userTookOver(); });
   });
-  card.addEventListener('mouseenter', function(){ pinned = null; });   // card hover lets map hover take over
+  card.addEventListener('mouseenter', function(){ pinned = null; userTookOver(); });   // card hover lets map hover take over
+
+  /* 3D pointer tilt (pauses with the tab when off-screen; runs only while moving) */
+  var tiltEl = document.getElementById('map3d');
+  var tiltPanel = document.querySelector('.map-panel');
+  if (tiltEl && tiltPanel){
+    if (reduceM){
+      tiltEl.style.transform = 'rotateX(6deg) rotateY(-8deg)';
+    } else {
+      var rx = 0, ry = 0, trx = 0, tryy = 0, rafId = null, tiltAlive = false;
+      function tiltTick(){
+        rafId = null;
+        rx += (trx - rx) * 0.08; ry += (tryy - ry) * 0.08;
+        tiltEl.style.transform = 'rotateX(' + ry.toFixed(2) + 'deg) rotateY(' + rx.toFixed(2) + 'deg) scale3d(1.02,1.02,1)';
+        if (tiltAlive && (Math.abs(trx - rx) > 0.01 || Math.abs(tryy - ry) > 0.01)) rafId = requestAnimationFrame(tiltTick);
+      }
+      function tiltKick(){ if (!rafId && tiltAlive) rafId = requestAnimationFrame(tiltTick); }
+      if ('IntersectionObserver' in window){
+        new IntersectionObserver(function(en){
+          en.forEach(function(e){ tiltAlive = e.isIntersecting; if (tiltAlive) tiltKick(); });
+        }, {threshold:0}).observe(tiltPanel);
+      } else { tiltAlive = true; }
+      tiltPanel.addEventListener('pointermove', function(e){
+        if (e.pointerType && e.pointerType !== 'mouse') return;   // touch/pen drags must not tilt while scrolling
+        var r = tiltPanel.getBoundingClientRect();
+        trx = ((e.clientX - r.left) / r.width - 0.5) * 14;
+        tryy = ((e.clientY - r.top) / r.height - 0.5) * -10;
+        tiltKick();
+      }, {passive:true});
+      tiltPanel.addEventListener('pointerleave', function(){ trx = 0; tryy = 0; tiltKick(); });
+    }
+  }
+
   activate('GT');
+  if (statusEl && !reduceM){ setStatus(); scheduleTour(); }
 })();
 </script>
 
