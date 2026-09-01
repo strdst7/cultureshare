@@ -1,7 +1,7 @@
 {
-  "name": "Ntsika Shembe Holdings",
-  "short_name": "NSH",
-  "description": "IP origination & technology — with Culture Share, the flagship cultural technology platform.",
+  "name": "Culture Share",
+  "short_name": "CS",
+  "description": "Cultural technology platform — social connection, a peer-reviewed cultural knowledge base, and applied AI.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0B0906",
