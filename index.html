@@ -107,7 +107,7 @@ section{position:relative;scroll-margin-top:72px}
   margin:.55em 0 .45em;text-wrap:balance;
 }
 .h2 em{font-style:italic;color:var(--gold2)}
-.lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--mut);max-width:58ch}
+.lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--mut);max-width:58ch;background:transparent}
 .btn{
   display:inline-flex;align-items:center;gap:.6em;
   padding:.95em 1.7em;border-radius:var(--r);
@@ -271,37 +271,7 @@ section{position:relative;scroll-margin-top:72px}
 .feat p{font-size:.87rem;color:rgba(27,20,11,.72);margin-top:.55em}
 .cu-visual{position:relative}
 .cu-note{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(27,20,11,.5);font-weight:700;text-align:center;margin-top:18px}
-/* phone mockup */
-.phone{
-  width:min(330px,100%);margin-inline:auto;background:#14100A;border-radius:34px;
-  padding:12px;border:1px solid rgba(27,20,11,.3);
-  box-shadow:0 40px 90px -30px rgba(40,25,0,.5);
-  position:relative;
-}
-.phone-screen{background:#0F0C08;border-radius:24px;overflow:hidden;border:1px solid rgba(200,155,60,.2)}
-.app{padding:13px 14px 10px}
-.app-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
-.app-brand{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:600;font-size:.95rem;color:var(--bone)}
-.app-brand::before{content:"";width:9px;height:9px;background:var(--gold);transform:rotate(45deg)}
-.app-pts{font-size:.66rem;font-weight:800;letter-spacing:.08em;background:rgba(200,155,60,.14);color:var(--gold2);border:1px solid rgba(200,155,60,.35);padding:.35em .75em;border-radius:999px}
-.app-tabs{display:flex;gap:6px;margin-bottom:11px}
-.app-tabs span{font-size:.68rem;font-weight:700;letter-spacing:.06em;color:rgba(243,236,220,.45);padding:.4em .85em;border-radius:999px;border:1px solid transparent}
-.app-tabs span.on{color:var(--gold2);border-color:rgba(200,155,60,.4);background:rgba(200,155,60,.1)}
-.post{background:#18130B;border:1px solid rgba(200,155,60,.14);border-radius:14px;padding:12px 13px;margin-bottom:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
-.post-tag{font-size:.6rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.post-title{font-family:var(--serif);font-weight:600;font-size:1.02rem;color:var(--bone);line-height:1.2}
-.post-text{font-size:.72rem;color:rgba(243,236,220,.6);margin-top:4px;line-height:1.48}
-.post-meta{display:flex;align-items:center;gap:10px;margin-top:10px}
-.avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#33260F,#171109);border:1px solid rgba(200,155,60,.45);color:var(--gold2);font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
-.post-meta b{display:block;font-size:.72rem;color:var(--bone);line-height:1.2}
-.post-meta small{display:block;font-size:.6rem;color:rgba(243,236,220,.5)}
-.chip{margin-left:auto;font-size:.62rem;font-weight:800;color:#1B140B;background:var(--gold);padding:.35em .8em;border-radius:999px}
-.post-ai{background:linear-gradient(120deg,rgba(200,155,60,.16),rgba(194,105,44,.14));border:1px dashed rgba(200,155,60,.45);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px}
-.ai-badge{flex:none;font-size:.62rem;font-weight:800;letter-spacing:.08em;color:var(--gold2);border:1px solid rgba(200,155,60,.5);border-radius:999px;padding:.35em .7em}
-.post-ai span:last-child{font-size:.72rem;color:rgba(243,236,220,.72);line-height:1.45}
-.app-bottom{margin-top:14px;text-align:center;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(243,236,220,.4);font-weight:700}
-
-/* ============ CAPABILITY ============ */
+============ CAPABILITY ============ */
 .cap{background:var(--ink);padding-block:var(--sec)}
 .cap::before{
   content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
@@ -468,103 +438,6 @@ section{position:relative;scroll-margin-top:72px}
 }
 @media (prefers-reduced-motion:reduce){
   .scene,.screen{transition:none}
-}
-
-/* ============ WOW: AI AGENT + CST DEMO ============ */
-.agent-demo{
-  margin-top:clamp(48px,6vw,72px);
-  background:#12100B;
-  border:1px solid rgba(200,155,60,.25);
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 44px 90px -40px rgba(60,40,0,.45);
-}
-.agent-head{
-  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
-  padding:22px 26px;border-bottom:1px solid rgba(200,155,60,.18);
-  background:linear-gradient(120deg, rgba(200,155,60,.10), rgba(194,105,44,.05));
-}
-.agent-id{display:flex;align-items:center;gap:14px}
-.agent-avatar{
-  width:46px;height:46px;flex:none;border-radius:12px;
-  background:rgba(200,155,60,.12);border:1px solid rgba(200,155,60,.5);
-  display:flex;align-items:center;justify-content:center;color:var(--gold2);
-}
-.agent-avatar svg{width:22px;height:22px}
-.agent-id h3{font-family:var(--serif);font-weight:620;font-size:1.25rem;color:var(--bone)}
-.agent-id p{font-size:.8rem;color:rgba(243,236,220,.6);margin-top:2px}
-.cst-balance{
-  position:relative;text-align:right;background:rgba(200,155,60,.08);
-  border:1px solid rgba(200,155,60,.3);border-radius:12px;padding:10px 18px;
-}
-.cst-label{display:block;font-size:.6rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
-.cst-value{font-family:var(--serif);font-weight:620;font-size:2rem;color:var(--gold2);line-height:1;display:inline-block}
-.cst-unit{font-size:.7rem;color:var(--sand);font-weight:700;letter-spacing:.1em;margin-left:4px}
-.cst-toast{
-  position:absolute;top:-14px;right:8px;font-weight:800;color:var(--gold2);
-  font-size:.85rem;animation:toastUp 1.4s ease forwards;pointer-events:none;white-space:nowrap;
-}
-@keyframes toastUp{0%{opacity:0;transform:translateY(6px)}15%{opacity:1;transform:translateY(0)}70%{opacity:1}100%{opacity:0;transform:translateY(-14px)}}
-.cst-bump{animation:bump .35s ease}
-@keyframes bump{40%{transform:scale(1.18)}}
-.agent-body{padding:20px 26px 14px}
-.chat{
-  height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;
-  padding:6px 2px 6px 0;scrollbar-width:thin;scrollbar-color:rgba(200,155,60,.4) transparent;
-}
-.chat::-webkit-scrollbar{width:6px}
-.chat::-webkit-scrollbar-thumb{background:rgba(200,155,60,.35);border-radius:3px}
-.msg{max-width:82%;padding:11px 15px;font-size:.88rem;line-height:1.55;animation:msgIn .3s ease}
-.msg .who{display:block;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-weight:800}
-.msg.user{background:var(--gold);color:#14100A;font-weight:600;border-radius:14px 14px 4px 14px;align-self:flex-end}
-.msg.user .who{color:rgba(20,16,10,.62)}
-.msg.agent{background:#1B150E;border:1px solid rgba(200,155,60,.22);color:var(--bone);border-radius:4px 14px 14px 14px;align-self:flex-start;white-space:pre-wrap}
-@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.caret{display:inline-block;width:2px;height:1em;background:var(--gold2);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
-.typing{display:inline-flex;gap:5px;padding:4px 2px}
-.typing i{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:tyD 1.2s infinite}
-.typing i:nth-child(2){animation-delay:.15s}
-.typing i:nth-child(3){animation-delay:.3s}
-@keyframes tyD{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 14px}
-.chip-q{
-  font-size:.76rem;font-weight:700;color:var(--bone2);
-  border:1px solid rgba(200,155,60,.35);background:rgba(200,155,60,.08);
-  padding:.5em 1.05em;border-radius:999px;transition:.2s;cursor:pointer;
-}
-.chip-q:hover{background:rgba(200,155,60,.2);border-color:var(--gold);transform:translateY(-1px)}
-.chat-form{display:flex;gap:10px}
-.chat-form input{
-  flex:1;background:#0E0B07;border:1px solid rgba(200,155,60,.25);border-radius:10px;
-  padding:13px 16px;color:var(--bone);font-family:inherit;font-size:.9rem;outline:none;transition:.2s;
-}
-.chat-form input::placeholder{color:rgba(243,236,220,.4)}
-.chat-form input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,155,60,.15)}
-.send-btn{
-  width:48px;flex:none;border-radius:10px;background:var(--gold);color:#14100A;
-  display:flex;align-items:center;justify-content:center;transition:.2s;
-}
-.send-btn:hover{background:var(--gold2);transform:translateY(-1px)}
-.send-btn svg{width:19px;height:19px}
-.send-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
-.cst-feed{
-  border-top:1px solid rgba(200,155,60,.15);padding:12px 26px 16px;
-  display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:rgba(0,0,0,.18);
-}
-.cst-feed .f-label{font-size:.6rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
-.cst-feed ul{list-style:none;display:flex;gap:8px;flex-wrap:wrap}
-.cst-feed li{
-  font-size:.72rem;color:var(--bone2);background:rgba(200,155,60,.1);
-  border:1px solid rgba(200,155,60,.22);border-radius:999px;padding:.35em .9em;
-  animation:msgIn .4s ease;
-}
-.cst-feed li b{color:var(--gold2)}
-@media (max-width:760px){
-  .agent-head{flex-direction:column;align-items:flex-start}
-  .cst-balance{text-align:left}
-  .chat{height:260px}
-  .msg{max-width:92%}
 }
 
 /* ============ WOW: INTERACTIVE SA CULTURE MAP ============ */
@@ -801,7 +674,7 @@ section{position:relative;scroll-margin-top:72px}
 .board-btn:hover{background:rgba(200,155,60,.12);border-color:var(--gold);transform:translateY(-1px)}
 .board-btn .tri{width:0;height:0;border-left:7px solid var(--gold2);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
 /* ===== leadership & governance ===== */
-.lead{background:var(--ink);padding-block:var(--sec);border-top:1px solid var(--line)}
+.lead-sec{background:var(--ink);padding-block:var(--sec);border-top:1px solid var(--line)}
 .lead-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(34px,4.5vw,52px)}
 .l-card{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:clamp(20px,2.4vw,28px);transition:.3s;position:relative;overflow:hidden}
 .l-card::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,var(--gold),var(--ember));transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
@@ -1057,6 +930,16 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;background:var(--ink
   .est-vert{display:none}
 }
 
+
+/* Culture Share — light outro */
+.cu-outro{margin-top:clamp(44px,6vw,72px);text-align:center;padding-top:clamp(30px,4vw,48px);border-top:1px solid rgba(154,115,39,.28)}
+.cu-outro-t{font-size:clamp(1.02rem,1.5vw,1.2rem);color:rgba(27,20,11,.78);max-width:58ch;margin-inline:auto;line-height:1.7}
+.cu-outro-link{display:inline-flex;align-items:center;gap:.55em;margin-top:20px;font-weight:700;font-size:.92rem;letter-spacing:.01em;color:#7A5A16;border-bottom:1px solid rgba(122,90,22,.5);padding-bottom:.25em;transition:color .25s ease,gap .25s ease,border-color .25s ease}
+.cu-outro-link span{transition:transform .25s ease}
+.cu-outro-link:hover{color:#5C420F;border-color:#7A5A16;gap:.85em}
+.cu-outro-link:hover span{transform:translateX(4px)}
+@media (prefers-reduced-motion:reduce){.cu-outro-link,.cu-outro-link span{transition:none}}
+
 /* ==================== POLISH LAYER — global refinement pass ==================== */
 html{scroll-padding-top:96px}
 ::selection{background:var(--gold);color:var(--ink)}
@@ -1141,35 +1024,6 @@ html{scroll-padding-top:96px}
   .foot-col a::after{display:none}
 }
 
-/* ==================== CULTURE SHARE ALIVE — agent demo visibility + phone life ==================== */
-/* compact chat so chips + input are on screen when the panel is reached */
-.agent-demo .chat{height:clamp(168px,22vh,220px)}
-.agent-demo .chips{margin:14px 0 12px}
-.agent-demo .chips::before{content:"Try a question";display:block;width:100%;font-size:.6rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:rgba(243,236,220,.45);margin-bottom:8px}
-@media (max-width:1020px){
-  .agent-head{padding:16px 18px}
-  .agent-avatar{width:38px;height:38px}
-  .agent-id h3{font-size:1.05rem}
-  .agent-body{padding:16px 18px 12px}
-  .agent-demo .chat{height:clamp(150px,26vh,196px)}
-}
-/* the panel visibly breathes: gold hairline sheen across the top */
-.agent-demo{position:relative}
-.agent-demo::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(420px,80%);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-/* phone micro-life: moderation check pops, typing dots bounce, ledger row glows */
-.mod-ic{animation:modPop 3.4s ease-in-out infinite}
-@keyframes modPop{0%,58%,100%{transform:scale(1)}66%{transform:scale(1.16)}74%{transform:scale(1)}}
-.typing-row .ai-badge{animation:tyBadge 2.2s ease-in-out infinite}
-@keyframes tyBadge{0%,100%{opacity:.75}50%{opacity:1}}
-.cst-hero-toast{animation:toastUp 3s ease infinite}
-.led-row:first-child{animation:ledGlow 3.6s ease-in-out infinite}
-@keyframes ledGlow{0%,100%{background:rgba(255,255,255,.03)}50%{background:rgba(200,155,60,.10)}}
-/* agent avatar gentle glow so the demo reads as live */
-.agent-avatar{animation:avGlow 3s ease-in-out infinite}
-@keyframes avGlow{0%,100%{box-shadow:0 0 0 0 rgba(200,155,60,.35)}50%{box-shadow:0 0 0 7px rgba(200,155,60,0)}}
-@media (prefers-reduced-motion:reduce){
-  .agent-avatar,.mod-ic,.typing-row .ai-badge,.cst-hero-toast,.led-row:first-child{animation:none}
-}
 </style>
 </head>
 <body>
@@ -1386,45 +1240,10 @@ html{scroll-padding-top:96px}
       </div>
     </div>
 
-    <!-- WOW: AI AGENT + CST DEMO -->
-    <div class="agent-demo reveal" style="--d:.08s">
-      <div class="agent-head">
-        <div class="agent-id">
-          <span class="agent-avatar" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-8 8H4l2.2-3.3A8 8 0 1 1 21 11.5z"/></svg>
-          </span>
-          <div>
-            <h3>Meet the in-platform AI agent</h3>
-            <p>Ask about South African culture — I answer from Culture Share's reviewed knowledge base.</p>
-          </div>
-        </div>
-        <div class="cst-balance" aria-live="polite">
-          <span class="cst-label">CST balance</span>
-          <span class="cst-value" id="cstValue">120</span><span class="cst-unit">pts</span>
-        </div>
-      </div>
-      <div class="agent-body">
-        <div class="chat" id="chat" role="log" aria-live="polite"></div>
-        <div class="chips">
-          <button class="chip-q" data-q="What are the protocols for a traditional Zulu wedding?">Zulu weddings</button>
-          <button class="chip-q" data-q="Tell me about ulwaluko and initiation season.">Ulwaluko &amp; initiation</button>
-          <button class="chip-q" data-q="What was mbaqanga in the 1980s?">Mbaqanga in the 1980s</button>
-          <button class="chip-q" data-q="What is amapiano?">What is amapiano?</button>
-          <button class="chip-q" data-q="How do CST points work?">How CST points work</button>
-        </div>
-        <form class="chat-form" id="chatForm">
-          <input type="text" id="chatInput" placeholder="Ask about culture…" autocomplete="off" aria-label="Ask the Culture Share agent about South African culture">
-          <button type="submit" class="send-btn" id="sendBtn" aria-label="Send question">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-        </form>
-      </div>
-      <div class="cst-feed">
-        <span class="f-label">Ledger</span>
-        <ul id="cstFeed"></ul>
-      </div>
+        <div class="cu-outro reveal" style="--d:.1s">
+      <p class="cu-outro-t">Moderation, discovery, an in-platform agent, and a points ledger — one platform, built and deployed end to end by the NSH team.</p>
+      <a class="cu-outro-link" href="#capability">The same stack, offered as a service <span aria-hidden="true">&rarr;</span></a>
     </div>
-    <p class="cu-note" style="margin-top:14px">Illustrative demo of the in-platform AI agent.</p>
   </div>
 </section>
 
@@ -1532,7 +1351,7 @@ html{scroll-padding-top:96px}
 
 
 <!-- ================= LEADERSHIP & GOVERNANCE ================= -->
-<section class="lead" id="leadership">
+<section class="lead-sec" id="leadership">
   <div class="container">
     <p class="label reveal">04 — Leadership &amp; governance</p>
     <h2 class="h2 reveal" style="--d:.06s">Who runs the house — <em>and how.</em></h2>
@@ -2088,146 +1907,7 @@ html{scroll-padding-top:96px}
 })();
 </script>
 
-<script>
-/* ============ WOW: AI AGENT + CST DEMO — try the product on the page ============ */
-(function(){
-  var chat = document.getElementById('chat');
-  var form = document.getElementById('chatForm');
-  var input = document.getElementById('chatInput');
-  var sendBtn = document.getElementById('sendBtn');
-  var cstValue = document.getElementById('cstValue');
-  var cstFeed = document.getElementById('cstFeed');
-  if (!chat || !form) return;
 
-  /* grounded demo knowledge base (keyword-matched, peer-review-flavoured) */
-  var KB = [
-    { tag:'Zulu weddings', kw:['zulu','wedding','umembeso','lobola','bride','marriage'], a:"The order is set by both families and their elders: lobola negotiations come first, then umembeso — the bride-price handover at the groom's home — and finally the wedding day of praise singing and dance. Culture Share indexes the details by decade and region, so you can see how it changed over time." },
-    { tag:'Rites of passage', kw:['ulwaluko','initiation','rite','passage','xhos'], a:"Ulwaluko is the Xhosa rite of passage from boyhood to manhood, practised in the Eastern Cape. The season follows customary law: seclusion in the bush, guidance from an ingcibi and an ikhankatha, and a formal return ceremony. On Culture Share it's documented by peers who have lived it, with care around what is not shared publicly." },
-    { tag:'Music history', kw:['mbaqanga','marabi','kwela','music','jazz','township','80s','1980'], a:"Mbaqanga — township jazz — carried the sound of 1960s–80s South Africa: a deep, bass-heavy groove born from marabi and kwela, taken worldwide by voices like the Mahotella Queens. Follow the sound through its decades on Culture Share." },
-    { tag:'Amapiano', kw:['amapiano','piano','log drum','kwaito','house'], a:"Amapiano — 'the pianos' — fuses kwaito, house and jazz around its signature log-drum bass. It was born in Gauteng's townships in the 2010s and became the sound of a generation. You might notice a little of that groove on this page." },
-    { tag:'CST points', kw:['cst','points','loyalty','earn','reward','economy','ledger'], a:"CST is Culture Share's closed-loop loyalty ledger — built with financial-governance discipline, not a cryptocurrency. Earn CST when your posts are peer-reviewed or your knowledge helps others, and spend it on platform privileges. It's a closed-loop digital incentive system within the platform." },
-    { tag:'AI moderation', kw:['moderation','moderate','moderator','safe','safety','sensitive'], a:"Content is classified by decade and topic, with extra care around sensitive material — flagging, triaging, and keeping the boards respectful." },
-    { tag:'Discovery', kw:['for you','feed','discover','personal','recommend'], a:"The 'For You' feed learns from what you read and save — so it surfaces the culture you care about, not a generic stream." },
-    { tag:'About Culture Share', kw:['culture share','platform','sharers','seekers','who are you','what do you do','about the platform'], a:"Culture Share connects culture seekers with culture sharers — a reviewed knowledge base of traditions, music, food and language, with an AI agent on top. Ask me about weddings, initiations, music decades, or how CST points work." },
-    { tag:'Greeting', kw:['hello','hi','hey','sawubona','howzit','hallo'], a:"Sawubona. I answer from Culture Share's reviewed knowledge base — weddings, initiations, music decades, language, and how CST points work." }
-  ];
-  var FALLBACK = "Good question — my demo build covers a few corners of Culture Share's knowledge base. Try Zulu wedding, ulwaluko, mbaqanga, amapiano, or CST points — in the full product I'd answer from the whole reviewed base.";
-
-  function esc(s){
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-  function matchKB(q){
-    var ql = q.toLowerCase(), best = null, bestScore = 0;
-    for (var i = 0; i < KB.length; i++){
-      var score = 0;
-      for (var j = 0; j < KB[i].kw.length; j++){
-        if (ql.indexOf(KB[i].kw[j]) !== -1) score++;
-      }
-      if (score > bestScore){ bestScore = score; best = KB[i]; }
-    }
-    return bestScore > 0 ? best : null;
-  }
-  function addMsg(who, text){
-    var m = document.createElement('div');
-    m.className = 'msg ' + who;
-    var w = document.createElement('span'); w.className = 'who'; w.textContent = (who === 'user') ? 'You' : 'AI agent';
-    var t = document.createElement('span'); t.textContent = text;
-    m.appendChild(w); m.appendChild(t);
-    chat.appendChild(m);
-    chat.scrollTop = chat.scrollHeight;
-    return t;
-  }
-  var typingEl = null;
-  function typing(on){
-    if (on){
-      typingEl = document.createElement('div');
-      typingEl.className = 'msg agent';
-      var w = document.createElement('span'); w.className = 'who'; w.textContent = 'AI agent';
-      var ty = document.createElement('span'); ty.className = 'typing';
-      ty.innerHTML = '<i></i><i></i><i></i>';
-      typingEl.appendChild(w); typingEl.appendChild(ty);
-      chat.appendChild(typingEl); chat.scrollTop = chat.scrollHeight;
-    } else if (typingEl){
-      typingEl.remove(); typingEl = null;
-    }
-  }
-  function typeAnswer(text, done){
-    typing(true);
-    setTimeout(function(){
-      typing(false);
-      var t = addMsg('agent','');
-      var i = 0;
-      (function tick(){
-        if (i < text.length){
-          t.textContent = text.slice(0, ++i);
-          chat.scrollTop = chat.scrollHeight;
-          setTimeout(tick, 12);
-        } else {
-          var c = document.createElement('span'); c.className = 'caret';
-          t.parentNode.appendChild(c);
-          if (done) done();
-        }
-      })();
-    }, 480 + Math.random() * 420);
-  }
-  window.__csType = typeAnswer;
-  /* ---- CST ledger ---- */
-  var cst = 120, first = true;
-  function animate(from, to){
-    var t0 = null, dur = 620;
-    function step(ts){
-      if (!t0) t0 = ts;
-      var p = Math.min(1, (ts - t0) / dur);
-      var e = 1 - Math.pow(1 - p, 3);
-      cstValue.textContent = Math.round(from + (to - from) * e);
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  function award(pts, note){
-    var from = cst; cst += pts;
-    animate(from, cst);
-    var bal = cstValue.closest('.cst-balance');
-    var toast = document.createElement('span');
-    toast.className = 'cst-toast'; toast.textContent = '+' + pts + ' CST';
-    bal.appendChild(toast);
-    setTimeout(function(){ toast.remove(); }, 1400);
-    cstValue.classList.remove('cst-bump'); void cstValue.offsetWidth; cstValue.classList.add('cst-bump');
-    var li = document.createElement('li');
-    li.innerHTML = '<b>+' + pts + '</b> · ' + esc(note);
-    cstFeed.insertBefore(li, cstFeed.firstChild);
-    while (cstFeed.children.length > 4) cstFeed.removeChild(cstFeed.lastChild);
-  }
-  /* ---- flow ---- */
-  var busy = false;
-  function ask(q){
-    if (busy || !q) return;
-    busy = true; sendBtn.disabled = true;
-    addMsg('user', q);
-    input.value = '';
-    var hit = matchKB(q);
-    var pts, note;
-    if (first){ pts = 15; note = 'First question — welcome bonus'; first = false; }
-    else if (hit){ pts = 10; note = 'Answered · ' + hit.tag; }
-    else { pts = 5; note = 'Answered from knowledge base'; }
-    typeAnswer(hit ? hit.a : FALLBACK, function(){
-      award(pts, note);
-      busy = false; sendBtn.disabled = false;
-      if (input.focus) input.focus();
-    });
-  }
-  form.addEventListener('submit', function(e){ e.preventDefault(); ask(input.value.trim()); });
-  var chips = document.querySelectorAll('.chip-q');
-  for (var i = 0; i < chips.length; i++){
-    (function(c){
-      c.addEventListener('click', function(){ ask(c.getAttribute('data-q')); });
-    })(chips[i]);
-  }
-  setTimeout(function(){
-    addMsg('agent', "Sawubona. I'm the Culture Share agent — ask me about a Zulu wedding, ulwaluko, a decade of music, or how CST points work.");
-  }, 700);
-})();
-</script>
 
 <script>
 /* ============ WOW: INTERACTIVE SA CULTURE MAP ============ */
@@ -2706,26 +2386,7 @@ html{scroll-padding-top:96px}
 
 
 
-<script>
-/* ============ CULTURE SHARE: agent demo self-demo (fires once when in view) ============ */
-(function(){
-  var demo = document.querySelector('.agent-demo');
-  var type = window.__csType;
-  if (!demo || !type || !('IntersectionObserver' in window)) return;
-  var done = false;
-  var io = new IntersectionObserver(function(entries){
-    if (done) return;
-    if (entries.some(function(e){ return e.isIntersecting; })){
-      done = true;
-      setTimeout(function(){
-        type("Tap a question below, or ask your own — I answer from Culture Share's reviewed knowledge base, decade by decade.");
-      }, 750);
-      io.disconnect();
-    }
-  }, {threshold:.3});
-  io.observe(demo);
-})();
-</script>
+
 
 <script>
 /* ============ POLISH: scrollspy nav + scroll cue ============ */
